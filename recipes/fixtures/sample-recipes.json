@@ -1,0 +1,41 @@
+[
+{
+  "model": "recipes.ingredient",
+  "pk": 3,
+  "fields": {
+    "name": "water"
+  }
+},
+{
+  "model": "recipes.ingredientquantity",
+  "pk": 1,
+  "fields": {
+    "ingredient": 3,
+    "quantity": 4.0,
+    "units": "c",
+    "preparation": null
+  }
+},
+{
+  "model": "recipes.recipestep",
+  "pk": 2,
+  "fields": {
+    "step_number": 1,
+    "description": "add the water",
+    "ingredient_quantities": [
+      1
+    ]
+  }
+},
+{
+  "model": "recipes.recipe",
+  "pk": 1,
+  "fields": {
+    "name": "water recipe",
+    "description": null,
+    "receipe_steps": [
+      2
+    ]
+  }
+}
+]
