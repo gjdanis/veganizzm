@@ -38,7 +38,7 @@ class IngredientQuantity(models.Model):
 
     class Meta:
         verbose_name_plural = "ingredient quantities"
-    
+ 
 class RecipeStep(models.Model):
     """
     A recipe step is a numbered step in a recipe
@@ -53,7 +53,9 @@ class RecipeStep(models.Model):
     ingredient_quantities = models.ManyToManyField(IngredientQuantity)
     description = models.TextField(null=True)
 
-# todo: populate picklist for courses
+# todo: populate picklist for 'courses'
+# todo: add field for 'yields 2 servings'
+# todo: add field for citation link
 class Recipe(models.Model):
     """
     A recipe is a collection of recipe steps
