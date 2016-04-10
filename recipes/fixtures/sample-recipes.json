@@ -20,7 +20,7 @@
   "pk": 2,
   "fields": {
     "step_number": 1,
-    "description": "add the water",
+    "instruction": "add the water",
     "ingredient_quantities": [
       1
     ]

@@ -51,7 +51,7 @@ class RecipeStep(models.Model):
 
     step_number = models.PositiveSmallIntegerField(default=1)
     ingredient_quantities = models.ManyToManyField(IngredientQuantity)
-    description = models.TextField(null=True)
+    instruction = models.TextField(null=True)
 
 # todo: populate picklist for 'courses'
 # todo: add field for 'yields 2 servings'
