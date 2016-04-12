@@ -3,8 +3,8 @@ from blog.models import Post
 from recipes.models import Recipe
 
 class PostTests(TestCase):
-    fixtures = ['sample-blog.json']
-
+    fixtures = ['simple-data-model.json']
+    
     def test_delete_recipe(self):
         pass
 

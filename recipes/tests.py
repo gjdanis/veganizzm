@@ -2,7 +2,7 @@ from recipes.models import Ingredient, IngredientQuantity, RecipeStep, Recipe
 from django.test import TestCase
 
 class IngredientTests(TestCase):
-    fixtures = ['sample-recipes.json']
+    fixtures = ['simple-data-model.json']
 
     def test_delete_ingredient(self):
         water = Ingredient.objects.all()[0]
@@ -21,7 +21,7 @@ class IngredientTests(TestCase):
         )
 
 class IngredientQuantityTests(TestCase):
-    fixtures = ['sample-recipes.json']
+    fixtures = ['simple-data-model.json']
 
     def test_delete_ingredient_quantity(self):
         four_cups_water = IngredientQuantity.objects.all()[0]
@@ -44,7 +44,7 @@ class IngredientQuantityTests(TestCase):
         )
 
 class RecipeTests(TestCase):
-    fixtures = ['sample-recipes.json']
+    fixtures = ['simple-data-model.json']
     
     def test_delete_recipe(self):
         self.assertTrue(1 == 1)
