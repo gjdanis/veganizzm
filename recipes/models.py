@@ -69,7 +69,7 @@ class Recipe(models.Model):
     class CookingMethods:
         bake, blender, juice, raw, slow, fry, roast, grill, saute = range(1, 10)
 
-    class DietaryRestrictions:
+    class Diets:
         vegan, vegetarian, low_carb, no_nuts, no_soy, no_gluten = range(1, 7)
 
     receipe_steps = models.ManyToManyField(RecipeStep)
@@ -96,12 +96,12 @@ class Recipe(models.Model):
         null = True,
         max_length=1,
         choices=(
-            (DietaryRestrictions.vegan, "vegan"),
-            (DietaryRestrictions.vegetarian, "vegetarian"),
-            (DietaryRestrictions.low_carb, "low-carb"),
-            (DietaryRestrictions.no_nuts, "nut-free"),
-            (DietaryRestrictions.no_soy, "soy-free"),
-            (DietaryRestrictions.no_gluten, "gluten-free"),
+            (Diets.vegan, "vegan"),
+            (Diets.vegetarian, "vegetarian"),
+            (Diets.low_carb, "low-carb"),
+            (Diets.no_nuts, "nut-free"),
+            (Diets.no_soy, "soy-free"),
+            (Diets.no_gluten, "gluten-free"),
         )
     )
 
