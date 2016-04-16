@@ -26,7 +26,6 @@ class Tag(models.Model):
          dessert_types, occasion) = range(8)
 
     name = models.CharField(max_length=100)
-    category = models.CharField
     category = models.CharField(
         max_length=1,
         choices=(
@@ -59,6 +58,9 @@ class Recipe(models.Model):
         source (str): where the recipe came from
         tags ([Tag]): tags for the recipe
         miscellaneous_info (str): any information not contained in the above
+
+    Relationships:
+        The relationship with the RecipeSteps is handled in RecipeStep
     """
     prep_time    = models.DurationField()
     cooking_time = models.DurationField()
@@ -69,7 +71,6 @@ class Recipe(models.Model):
     serves = models.PositiveSmallIntegerField()
     source = models.CharField(max_length=1000)
 
-    #The relationship with the RecipeSteps is handled in RecipeStep.
     tags = models.ManyToManyField(Tag)
     miscellaneous_info = models.CharField(max_length=1000)
 
@@ -81,6 +82,9 @@ class RecipeStep(models.Model):
         recipe: ([Recipe]): associated recipe
         index (int): ordering in the recipe
         instruction (str): what to do in the step
+
+    Relationships:
+        The relationship with the IngredientQuantities is handled in IngredientQuantity.
     """
 
     class Meta:
@@ -89,8 +93,6 @@ class RecipeStep(models.Model):
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
     index = models.PositiveSmallIntegerField(default=0)
     instruction = models.CharField(max_length=1000)
-    #The relationship with the IngredientQuantities is handled in
-    #IngredientQuantity.
 
 # TODO: min_value=0.0 not allowed by django??
 # TODO: add field for countability for miscellaneous physical quantities?
