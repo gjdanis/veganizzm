@@ -56,7 +56,6 @@ class RecipeStep(models.Model):
 # todo: populate picklist for 'courses'
 # todo: add field for 'yields 2 servings'
 # todo: add field for citation link
-
 class Recipe(models.Model):
     """
     A recipe is a collection of recipe steps
