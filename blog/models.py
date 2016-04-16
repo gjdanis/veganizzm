@@ -13,13 +13,13 @@ class Post(models.Model):
         published (bool): whether or not the post is live
     """
 
+    class Meta:
+        ordering = ["-date_created"]
+
     title = models.CharField(max_length=100)
     recipe = models.OneToOneField(Recipe, null=True, on_delete=models.PROTECT)
     content = models.TextField()
     date_created = models.DateTimeField(auto_now_add=True)
     published = models.BooleanField(default=True)
-
-    class Meta:
-        ordering = ["-date_created"]
 
 

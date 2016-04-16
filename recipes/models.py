@@ -20,7 +20,10 @@ class IngredientQuantity(models.Model):
         quantity (float): the measured amount of the ingredient
         units (str): 'tablespoon', 'tsp', 'cup', 'qt'
     """
-    
+
+    class Meta:
+        verbose_name_plural = "ingredient quantities"
+
     class Units:
         tablespoon, teaspoon, cup, quart = range(1, 5)
 
@@ -35,9 +38,6 @@ class IngredientQuantity(models.Model):
             (Units.quart, "quart"),
         )
     )
-
-    class Meta:
-        verbose_name_plural = "ingredient quantities"
  
 class RecipeStep(models.Model):
     """
