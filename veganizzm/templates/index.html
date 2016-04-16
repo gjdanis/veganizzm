@@ -3,17 +3,123 @@
     width: 100%;
     height: auto;
     max-width: 450px;
-    max-height: 450px;
+    max-height: 460px;
   }
 
   .landing-header-controls {
     text-align: center;
-    margin: 10px;
   }
+
+  .two-column-layout {
+    border: solid green;
+  }
+
+  .social-links a {
+    text-decoration: none;
+  }
+
+*, *:before, *:after {
+  -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+}
+
+.columns-container, footer, header { position: relative; margin: .5em; }
+
+.left-column, .right-column, footer, header {  border: 1px solid  #ccc; padding: 1.25em; }
+
+.left-column { margin-bottom: .5em; }
+
+.nav {
+  list-style: none;
+  margin-left: 0;
+  margin-bottom: 0;
+  padding-left: 0;
+}
+
+.nav > li,
+.nav > li > a {
+  display: inline-block;
+  *display: inline;
+  zoom: 1;
+}
+
+.inline-items {
+  margin-top: 0;
+}
+
+.inline-items li {
+  margin-left: 0;
+  border-left: 1px solid black;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.inline-items li:first-child {
+  margin-left: 0;
+  border: none;
+  padding-left: 0;
+  padding-right: 10px;
+}
+
+.inline-items li:last-child {
+  padding-right: 0;
+}
+
+/* MEDIA QUERIES */
+@media screen and (min-width: 47.5em ) {
+  .left-column { 
+    margin-right: 19.5em; 
+  }
+
+  .right-column { 
+    position: absolute; top: 0; right: 0; width: 18.75em; 
+  }   
+}
+
 </style>
 
-<body class="landing-background">
-  <div class="landing-header-controls">
-    <img class="landing-veganizzm-logo" src="/static/images/landing/new-veganizzm-logo.png">
+<head>
+  <title>Veganizzm - a Vegan Food Blog by Izzy Darby</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+  <header class="landing-background">
+    <div class="landing-header-controls">
+      <img class="landing-veganizzm-logo" src="/static/images/landing/new-veganizzm-logo.png">
+    </div>
+
+    <nav class="landing-title-background">
+      <ul class="landing-navigation">
+        <li class="landing-navigation-about"><a href="#">About</a></li>
+        <li class="landing-navigation-recipes"><a href="#">Why Vegan</a></li>
+        <li class="landing-navigation-why-vegan"><a href="#">Recipes</a></li>
+        <li class="landing-navigation-press"><a href="#">Press</a></li>
+        <li class="landing-navigation-contact"><a href="#">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="columns-container">
+    <div class="left-column">
+      <h2>Left Column</h2>
+      <p> PARAGRAPH 1 </p>
+      <p> PARAGRAPH 2 </p>
+    </div>
+    <div class="right-column">
+      <div class="social-links">
+        <a href="http://instagram.com/veganizzm" target="_blank"><img src="/static/images/landing/instagram.png">
+        <a href="http://pinterest.com/veganizzm" target="_blank"><img src="/static/images/landing/pinterest.png">
+        <a href="https://twitter.com/veganizzm" target="_blank"><img src="/static/images/landing/twitter.png">
+        <a href="https://www.facebook.com/veganizzm" target="_blank"><img src="/static/images/landing/facebook.png">
+      </div>
+    </div>
   </div>
+
+  <footer>
+      <p><a href="#">Contact</a> | <a href="#">Sitemap</a> | <a href="#">Privacy Policy</a></p>
+      <p>&copy;2016 Copyright Veganizzm</p>
+  </footer>
+</body>
+
+
 </body>
