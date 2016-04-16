@@ -61,7 +61,7 @@ class Recipe(models.Model):
     A recipe is a collection of recipe steps
 
     Attributes:
-        receipe_steps ([RecipeStep]): what to do for this recipe
+        recipe_steps ([RecipeStep]): what to do for this recipe
         name (str): e.g. 'Vegan Grapefruit Cupcakes with Bourbon Vanilla Frosting'
         description (str|null): blurb of what this recipe is
     """
@@ -72,7 +72,7 @@ class Recipe(models.Model):
     class Diets:
         vegan, vegetarian, low_carb, no_nuts, no_soy, no_gluten = range(1, 7)
 
-    receipe_steps = models.ManyToManyField(RecipeStep)
+    recipe_steps = models.ManyToManyField(RecipeStep)
     name = models.CharField(max_length=100, blank=False, default="name needed")
     description = models.TextField(null=True)
 
