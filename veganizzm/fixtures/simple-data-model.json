@@ -32,7 +32,7 @@
   "fields": {
     "name": "water recipe",
     "description": null,
-    "receipe_steps": [
+    "recipe_steps": [
       2
     ]
   }
