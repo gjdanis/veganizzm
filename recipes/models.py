@@ -2,106 +2,145 @@ from django.db import models
 
 class Ingredient(models.Model):
     """
-    An ingredient is a string that may be used with a quantity in a recipe
+    An ingredient is a food, drink, spice, etc. used in a recipe.
 
     Attributes:
-        name (str): anything, e.g. 'water'
+        name (str): name of the ingredient (e.g. 'water')
     """
     name = models.CharField(max_length=100)
 
-# todo: min_value=0.0 not allowed by django??
-# todo: populate picklist for units, preparation
-class IngredientQuantity(models.Model):
+#TODO: put these somewhere else? Will want to tag posts as well.
+class Tag(models.Model):
     """
-    An ingredient quantity is a prepared ingredient with a measured quantity
+    A tag is a label used to categorize and for sorting.
 
     Attributes:
-        ingredient (Ingredient): to include
-        quantity (float): the measured amount of the ingredient
-        units (str): 'tablespoon', 'tsp', 'cup', 'qt'
+        name (str): name of the tag (e.g. 'dessert')
+        category (str): 'cooking methods', 'courses', 'dietary',
+            'key ingredients', 'seasons', 'cuisine', 'dessert types', or
+            'occasion'
+    """
+
+    class Categories:
+        (cooking_methods, courses, dietary, key_ingredients, seasons, cuisine,
+         dessert_types, occasion) = range(8)
+
+    name = models.CharField(max_length=100)
+    category = models.CharField
+    category = models.CharField(
+        max_length=1,
+        choices=(
+            (Categories.cooking_methods, 'cooking methods'),
+            (Categories.courses, 'courses'),
+            (Categories.dietary, 'dietary'),
+            (Categories.key_ingredients, 'key ingredients'),
+            (Categories.seasons, 'seasons'),
+            (Categories.cuisine, 'cuisine'),
+            (Categories.dessert_types, 'dessert types'),
+            (Categories.occasion, 'occasion'),
+        ),
+        null=True,
+        blank=True
+    )
+
+class Recipe(models.Model):
+    """
+    A recipe is a list of recipe steps along with some metadata. It does not
+    actually contain any RecipeSteps; instead, each RecipeStep has a ForeignKey
+    to a Recipe.
+
+    Attributes:
+        prep_time (duration): time needed for preparation
+        cooking_time (duration): time needed for cooking
+        total_time (duration): total time needed to make the recipe
+        title (str): title of the recipe
+        description (str): description of the recipe
+        serves (int): number of servings made by the recipe
+        source (str): where the recipe came from
+        tags ([Tag]): tags for the recipe
+        miscellaneous_info (str): any information not contained in the above
+    """
+    prep_time    = models.DurationField()
+    cooking_time = models.DurationField()
+    total_time   = models.DurationField()
+
+    title  = models.CharField(max_length=1000)
+    description = models.CharField(max_length=1000)
+    serves = models.PositiveSmallIntegerField()
+    source = models.CharField(max_length=1000)
+
+    #The relationship with the RecipeSteps is handled in RecipeStep.
+    tags = models.ManyToManyField(Tag)
+    miscellaneous_info = models.CharField(max_length=1000)
+
+class RecipeStep(models.Model):
+    """
+    A recipe step is a numbered step in a recipe.
+
+    Attributes:
+        recipe: ([Recipe]): associated recipe
+        index (int): ordering in the recipe
+        instruction (str): what to do in the step
     """
 
     class Meta:
-        verbose_name_plural = "ingredient quantities"
+        default_related_name = 'recipe_step_set'
 
-    class Units:
-        tablespoon, teaspoon, cup, quart = range(1, 5)
+    recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
+    index = models.PositiveSmallIntegerField(default=0)
+    instruction = models.CharField(max_length=1000)
+    #The relationship with the IngredientQuantities is handled in
+    #IngredientQuantity.
 
-    ingredient = models.ForeignKey(Ingredient, on_delete=models.CASCADE)
-    quantity = models.FloatField() 
-    units = models.CharField(      
-        max_length=1,
-        choices=(
-            (Units.tablespoon, "tablespoon"),
-            (Units.teaspoon, "teaspoon"),
-            (Units.cup, "cup"),
-            (Units.quart, "quart"),
-        )
-    )
- 
-class RecipeStep(models.Model):
+# TODO: min_value=0.0 not allowed by django??
+# TODO: add field for countability for miscellaneous physical quantities?
+# Consider 'two dashes salt' versus 'two handfuls strawberries.'
+class IngredientQuantity(models.Model):
     """
-    A recipe step is a numbered step in a recipe
+    An ingredient quantity is an amount of a particular ingredient.
 
     Attributes:
-        step_number (int): ordering of the step in the recipe
-        ingredient_quantities ([IngredientQuantity]): the ingredient quantities to include
-        description (str|null): text content of what to do for this step
+        ingredient ([Ingredient]): associated ingredient
+        recipe_step ([RecipeStep]): associated recipe step
+        index (int): ordering in the recipe step
+        physical_quantity (str): 'length', 'area', 'volume', 'mass', 'count',
+            'miscellaneous'
+        measure (float): amount (in base units for `physical_quantity`) of
+            `ingredient`
+
+            The base units are as follows:
+                length          meter
+                area            square meter
+                volume          cubic meter
+                mass            kilogram
+                count           N/A
+                miscellaneous   N/A
+
+        unit_name (str|null): if `physical_quantity` is 'miscellaneous',
+            name of unit used to measure `ingredient` (e.g. 'stalk')
+        preparation (str|null): how the ingredient is to be prepared
     """
 
-    step_number = models.PositiveSmallIntegerField(default=1)
-    ingredient_quantities = models.ManyToManyField(IngredientQuantity)
-    instruction = models.TextField(null=True)
+    class Meta:
+        default_related_name = 'ingredient_quantity_set'
 
-# todo: populate picklist for 'courses'
-# todo: add field for 'yields 2 servings'
-# todo: add field for citation link
-class Recipe(models.Model):
-    """
-    A recipe is a collection of recipe steps
+    class PhysicalQuantities:
+        length, area, volume, mass, count, miscellaneous = range(6)
 
-    Attributes:
-        recipe_steps ([RecipeStep]): what to do for this recipe
-        name (str): e.g. 'Vegan Grapefruit Cupcakes with Bourbon Vanilla Frosting'
-        description (str|null): blurb of what this recipe is
-    """
-
-    class CookingMethods:
-        bake, blender, juice, raw, slow, fry, roast, grill, saute = range(1, 10)
-
-    class Diets:
-        vegan, vegetarian, low_carb, no_nuts, no_soy, no_gluten = range(1, 7)
-
-    recipe_steps = models.ManyToManyField(RecipeStep)
-    name = models.CharField(max_length=100, blank=False, default="name needed")
-    description = models.TextField(null=True)
-
-    # recipe meta data for search/recommendations
-    cooking_method = models.CharField(
-        null = True,
+    ingredient = models.ForeignKey(Ingredient, on_delete=models.PROTECT)
+    recipe_step = models.ForeignKey(RecipeStep, on_delete=models.CASCADE)
+    index = models.PositiveSmallIntegerField(default=0)
+    physical_quantity = models.CharField(
         max_length=1,
         choices=(
-            (CookingMethods.bake, "bake"),
-            (CookingMethods.blender, "blender"),
-            (CookingMethods.juice, "juice"),
-            (CookingMethods.raw, "raw"),
-            (CookingMethods.slow, "slow-cooker"),
-            (CookingMethods.fry, "fry"),
-            (CookingMethods.roast, "roast"),
-            (CookingMethods.grill, "grill"),
-            (CookingMethods.saute, "saute"),
+            (PhysicalQuantities.length, 'length'),
+            (PhysicalQuantities.area, 'area'),
+            (PhysicalQuantities.volume, 'volume'),
+            (PhysicalQuantities.mass, 'mass'),
+            (PhysicalQuantities.count, 'count'),
+            (PhysicalQuantities.miscellaneous, 'miscellaneous'),
         )
     )
-    diet = models.CharField(
-        null = True,
-        max_length=1,
-        choices=(
-            (Diets.vegan, "vegan"),
-            (Diets.vegetarian, "vegetarian"),
-            (Diets.low_carb, "low-carb"),
-            (Diets.no_nuts, "nut-free"),
-            (Diets.no_soy, "soy-free"),
-            (Diets.no_gluten, "gluten-free"),
-        )
-    )
-
+    measure = models.FloatField()
+    unit_name = models.CharField(null=True, blank=True, max_length=100)
+    preparation = models.CharField(null=True, blank=True, max_length=100)
