@@ -7,40 +7,48 @@
     text-decoration: none;
   }
 
-*, *:before, *:after {
-  -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
-}
+  *, *:before, *:after {
+    -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+  }
 
-.columns-container, footer, header { position: relative; margin: .5em; }
+  .columns-container,
+  footer,
+  header {
+    position: relative; margin: .5em;
+  }
 
-.left-column, .right-column, footer, header {  border: 1px solid  #ccc; padding: 1.25em; }
+  .left-column, .right-column, footer, header {
+    border: 1px solid  #ccc; padding: 1.25em;
+  }
 
-.left-column { margin-bottom: .5em; }
+  .left-column {
+    margin-bottom: .5em;
+  }
 
-.inline-items {
-  margin-top: 0;
-}
+  .inline-items {
+    margin-top: 0;
+  }
 
-.inline-items li {
-  margin-left: 0;
-  border-left: 1px solid black;
-  padding-left: 10px;
-  padding-right: 10px;
-}
+  .inline-items li {
+    margin-left: 0;
+    border-left: 1px solid black;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
 
-.inline-items li:first-child {
-  margin-left: 0;
-  border: none;
-  padding-left: 0;
-  padding-right: 10px;
-}
+  .inline-items li:first-child {
+    margin-left: 0;
+    border: none;
+    padding-left: 0;
+    padding-right: 10px;
+  }
 
-.inline-items li:last-child {
-  padding-right: 0;
-}
+  .inline-items li:last-child {
+    padding-right: 0;
+  }
 
-/* MEDIA QUERIES */
-@media screen and (min-width: 47.5em ) {
+  /* MEDIA QUERIES */
+  @media screen and (min-width: 47.5em ) {
   .left-column { 
     margin-right: 19.5em; 
   }
@@ -49,11 +57,12 @@
     position: absolute; top: 0; right: 0; width: 18.75em; 
   }   
 }
-
 </style>
 
 <div>
-  {% include "header.html" %}
+  <header>
+    {% include "header.html" %}
+  </header>
   <div class="columns-container">
     <div class="left-column">
       <h2>Left Column</h2>
