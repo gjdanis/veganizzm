@@ -1,15 +1,4 @@
 <style>
-  .landing-veganizzm-logo {
-    width: 100%;
-    height: auto;
-    max-width: 450px;
-    max-height: 460px;
-  }
-
-  .landing-header-controls {
-    text-align: center;
-  }
-
   .two-column-layout {
     border: solid green;
   }
@@ -77,28 +66,8 @@
 
 </style>
 
-<head>
-  <title>Veganizzm - a Vegan Food Blog by Izzy Darby</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
-
-<body>
-  <header class="landing-background">
-    <div class="landing-header-controls">
-      <img class="landing-veganizzm-logo" src="/static/images/landing/new-veganizzm-logo.png">
-    </div>
-
-    <nav class="landing-title-background">
-      <ul class="landing-navigation">
-        <li class="landing-navigation-about"><a href="#">About</a></li>
-        <li class="landing-navigation-recipes"><a href="#">Why Vegan</a></li>
-        <li class="landing-navigation-why-vegan"><a href="#">Recipes</a></li>
-        <li class="landing-navigation-press"><a href="#">Press</a></li>
-        <li class="landing-navigation-contact"><a href="#">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
-
+<div>
+  {% include "header.html" %}
   <div class="columns-container">
     <div class="left-column">
       <h2>Left Column</h2>
@@ -114,12 +83,9 @@
       </div>
     </div>
   </div>
-
+  <!-- TODO IZZY: move to template -->
   <footer>
-      <p><a href="#">Contact</a> | <a href="#">Sitemap</a> | <a href="#">Privacy Policy</a></p>
-      <p>&copy;2016 Copyright Veganizzm</p>
+    <p><a href="#">Contact</a> | <a href="#">Sitemap</a> | <a href="#">Privacy Policy</a></p>
+    <p>&copy;2016 Copyright Veganizzm</p>
   </footer>
-</body>
-
-
-</body>
+</div>

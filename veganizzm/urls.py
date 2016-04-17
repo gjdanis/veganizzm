@@ -21,5 +21,4 @@ from django.conf import settings
 urlpatterns = [
     url(r"^admin/", admin.site.urls),
     url(r"^$", "blog.views.landing_view", name="landing_view"),
-    url(r"^header/$", "blog.views.header_view", name="header_view"),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
