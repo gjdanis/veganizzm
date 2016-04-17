@@ -4,7 +4,7 @@
 <style>
   .header-logo {
     height: auto;
-    max-width: 250px;
+    max-width: 300px;
   }
 
   .header-container {
@@ -27,7 +27,7 @@
     text-align: center;
   }
 
-  .nav-item { 
+  .nav-item {
     display: inline-block;
   }
 
@@ -52,7 +52,29 @@
     text-decoration: underline;
   }
 
+  .nav-search {
+    width: 25px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    background-image: url("/static/images/landing/navigation/search-icon.png");
+    background-position: 5px 5px; 
+    background-repeat: no-repeat;
+    padding: 6px 10px 6px 40px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+  }
+
+  .nav-search:focus {
+    width: 95%;
+    margin-bottom: 5px;
+  }
+
   /*
+   * Displays the hamburger/hidden text
+   *
    * Adapted from http://www.w3schools.com/howto/howto_js_topnav.asp
    */
   @media screen and (max-width:680px) {
@@ -72,6 +94,8 @@
   }
 
   /*
+   * Displays the navigation items downward
+   *
    * Adapted from http://www.w3schools.com/howto/howto_js_topnav.asp
    */
   @media screen and (max-width:680px) {
@@ -90,16 +114,18 @@
       display: inline;
     }
 
-    ul.nav.responsive li a {
+    ul.nav.responsive li a,
+    ul.nav.responsive li form {
       display: block;
       text-align: left;
+      float: none;
     }
   }
 </style>
 </head>
 
 <div class="header-container">
-  <img class="header-logo" src="/static/images/landing/new-veganizzm-logo.png">
+  <img class="header-logo" src="/static/images/landing/veganizzm-logo.png">
   <ul class="nav">
     <li class="nav-item-hidden"><a href="#">Menu and Search</a></li>
     <li class="nav-item"><a href="#">About</a></li>
@@ -107,6 +133,9 @@
     <li class="nav-item"><a href="#">Recipes</a></li>
     <li class="nav-item"><a href="#">Press</a></li>
     <li class="nav-item"><a href="#">Contact</a></li>
+    <li class="nav-item">
+      <input class="nav-search" type="text" name="search" placeholder="Search..">
+    </li>
     <li class="hamburger-control">
       <a href="javascript:void(0);" style="font-size:15px;" onclick="toggleControl()">☰</a>
     </li>     
