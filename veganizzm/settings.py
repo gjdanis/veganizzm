@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blog.apps.BlogConfig',
-    'recipes.apps.RecipesConfig'
+    'recipe.apps.RecipeConfig'
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -57,7 +57,7 @@ ROOT_URLCONF = 'veganizzm.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(os.path.join(BASE_DIR, 'veganizzm'), 'templates')],
+        'DIRS': [os.path.join(os.path.join(BASE_DIR, 'veganizzm'), 'templates'),],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

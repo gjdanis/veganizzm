@@ -1,5 +1,5 @@
 from django.db import models
-from recipes.models import Recipe
+from recipe.models import Recipe
 
 class Post(models.Model):
     """

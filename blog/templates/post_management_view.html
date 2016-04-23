@@ -1,0 +1,95 @@
+<style>
+  .page-container {
+    width:100%; 
+  }
+
+  .blog-title {
+    width: 100%;
+    padding-left: 5px;
+  }
+
+  .preview-content,
+  .blog-content {
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    border: none;
+    width: 100%;
+    box-sizing: border-box;
+    min-height: 150px;
+    resize: vertical;
+    padding: 8px;
+  }
+
+  .preview-content {
+    background-color: white;
+  }
+
+  .blog-content-container {
+    padding:10px;
+    box-sizing: border-box;
+  }
+
+  .verdana-text {
+    float: left;
+    font-family: verdana;
+    font-size: 1em;
+    margin-bottom: 8px;
+  }
+
+  .save-controls-container {
+    padding: 8px;
+  }
+
+  .save-controls-container input {
+    margin-right: 5px;
+  }
+
+  .working-blog-container {
+    background-color: #f1f1f1;
+  }
+
+</style>
+
+<div class="page-container">
+  <div class="working-blog-container">
+    <div class="blog-content-container">
+      <input id="js-blog-title" class="blog-title verdana-text editable" value="{{ working_title }}">
+      <textarea id="js-working-content" class="blog-content editable">{{ working_content }}</textarea>
+    </div>
+    <div class="blog-content-container">
+      <div id="js-preview-content" class="preview-content"></div>
+    </div>
+  </div>
+  <div class="save-controls-container">
+    <input type="submit" class="verdana-text" value="Preview" id="js-preview">
+    <input type="submit" class="verdana-text" value="Save">
+    <input type="submit" class="verdana-text" value="Publish">
+    <input type="submit" class="verdana-text" value="Disable"> <!--good to have a select with all blogs-->
+  </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
+<script type="text/javascript">
+  function refreshPreview() {
+    $.post({
+      url: "/ajax/post/preview/", 
+      data: {
+        "title": $("#js-blog-title").val(),
+        "content": $("#js-working-content").val(),
+        "csrfmiddlewaretoken": "{{ csrf_token }}"
+      },
+      success: function(data) {
+        $("#js-preview-content").html(data);
+      }
+    });
+  }
+
+  $(document).ready(function(){
+    $("#js-preview").click(refreshPreview);
+    refreshPreview();
+  });
+</script>
+
+
+
+

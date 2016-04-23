@@ -1,4 +1,4 @@
-from recipes.models import Ingredient, IngredientQuantity, RecipeStep, Recipe
+from recipe.models import Ingredient, IngredientQuantity, RecipeStep, Recipe
 from django.test import TestCase
 from django.db.models.deletion import ProtectedError
 

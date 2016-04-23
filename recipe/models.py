@@ -125,6 +125,7 @@ class IngredientQuantity(models.Model):
 
     class Meta:
         default_related_name = 'ingredient_quantity_set'
+        verbose_name_plural = 'ingredient quantities'
 
     class PhysicalQuantities:
         length, area, volume, mass, count, miscellaneous = range(6)

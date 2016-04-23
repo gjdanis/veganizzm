@@ -20,5 +20,9 @@ from django.conf import settings
 
 urlpatterns = [
     url(r"^admin/", admin.site.urls),
-    url(r"^$", "blog.views.landing_view", name="landing_view"),
+    url(r"^$", "blog.views.home", name="home"),
+    url(r"^post/manage/$", "blog.views.post_management", name="post_management"),
+    url(r"^recipe/manage/$", "recipe.views.recipe_management", name="recipe_management"),
+    url(r"^ajax/post/preview/$", "blog.views.post_preview", name="post_preview"),
+    url(r"^ajax/recipe/preview/$", "recipe.views.recipe_preview", name="recipe_preview"),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
