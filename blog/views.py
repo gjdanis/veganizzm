@@ -1,14 +1,15 @@
-from django.shortcuts import render
-from django.http import HttpResponse
-from django.template.loader import render_to_string
+from django.shortcuts import render, get_object_or_404
+from blog.models      import Post
 
-def home(request):
-    return render(request, "index.html")
+# == `home` ==
+def home_view(request):
+    # Renders the home page.
+    return render(request, 'index.html')
 
-def post_management(request):
-    data = {"working_title": "New Blog Post", "working_content": "Blog content goes here..."}
-    return render(request, "post_management_view.html", data)
-
-def post_preview(request):
-    data = {"title": request.POST["title"], "content": request.POST["content"]}
-    return HttpResponse(render_to_string("post_view.html", data))
+# == `post_view` == 
+def post_view(request, slug):
+    # View a `Post` by `slug`.
+    
+    post = get_object_or_404(Post, slug=slug)
+    data = {'title': post.title, 'content': post.content}
+    return render(request, 'post_view.html', data)

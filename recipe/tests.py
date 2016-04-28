@@ -1,5 +1,5 @@
 from recipe.models import Ingredient, IngredientQuantity, RecipeStep, Recipe
-from django.test import TestCase
+from django.test   import TestCase
 from django.db.models.deletion import ProtectedError
 
 class IngredientTests(TestCase):
@@ -7,12 +7,10 @@ class IngredientTests(TestCase):
 
     def test_delete_ingredient(self):
         water = Ingredient.objects.all()[0]
-        with self.assertRaises(
-                ProtectedError,
-                msg="Can't delete an Ingredient that has an associated "
-                    "IngredientQuantity."
-        ):
+        error = "Can't delete an Ingredient that has an associated IngredientQuantity."
+        with self.assertRaises(ProtectedError, msg=error):
             water.delete()
+
         volume_of_water = IngredientQuantity.objects.all()[0]
         volume_of_water.delete()
         water.delete()
@@ -51,9 +49,12 @@ class RecipeStepTests(TestCase):
             "Expect 'pour_water' to be deleted"
         )
         self.assertTrue(
-            len(pour_water.ingredient_quantity_set.all()) == 0,
-            "Expect deleting 'pour_water' to delete 'volume_of_water' "
-                "used in 'pour_water'"
+            len(Ingredient.objects.all()) > 0,
+            "Expect deleting 'pour_water' to not delete 'water'"
+        )
+        self.assertTrue(
+            len(Recipe.objects.all()) > 0,
+            "Expect deleting 'pour_water' to not delete 'glass_of_water'"
         )
 
 class RecipeTests(TestCase):

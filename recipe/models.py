@@ -1,149 +1,93 @@
-from django.db import models
+from django.db                import models
+from datetime                 import timedelta
+from django.core.urlresolvers import reverse
+from veganizzm.utilities      import generate_slug
 
-class Ingredient(models.Model):
-    """
-    An ingredient is a food, drink, spice, etc. used in a recipe.
-
-    Attributes:
-        name (str): name of the ingredient (e.g. 'water')
-    """
-    name = models.CharField(max_length=100)
-
-#TODO: put these somewhere else? Will want to tag posts as well.
-class Tag(models.Model):
-    """
-    A tag is a label used to categorize and for sorting.
-
-    Attributes:
-        name (str): name of the tag (e.g. 'dessert')
-        category (str): 'cooking methods', 'courses', 'dietary',
-            'key ingredients', 'seasons', 'cuisine', 'dessert types', or
-            'occasion'
-    """
-
-    class Categories:
-        (cooking_methods, courses, dietary, key_ingredients, seasons, cuisine,
-         dessert_types, occasion) = range(8)
-
-    name = models.CharField(max_length=100)
-    category = models.CharField(
-        max_length=1,
-        choices=(
-            (Categories.cooking_methods, 'cooking methods'),
-            (Categories.courses, 'courses'),
-            (Categories.dietary, 'dietary'),
-            (Categories.key_ingredients, 'key ingredients'),
-            (Categories.seasons, 'seasons'),
-            (Categories.cuisine, 'cuisine'),
-            (Categories.dessert_types, 'dessert types'),
-            (Categories.occasion, 'occasion'),
-        ),
-        null=True,
-        blank=True
-    )
-
+# == `Recipe` ==
 class Recipe(models.Model):
-    """
-    A recipe is a list of recipe steps along with some metadata. It does not
-    actually contain any RecipeSteps; instead, each RecipeStep has a ForeignKey
-    to a Recipe.
+    # A `Recipe` is a list of recipe steps. It doesn't actually 
+    # contain any `RecipeStep` objects. Instead, each `RecipeStep`
+    # has a foreign key to a `Recipe`.
 
-    Attributes:
-        prep_time (duration): time needed for preparation
-        cooking_time (duration): time needed for cooking
-        total_time (duration): total time needed to make the recipe
-        title (str): title of the recipe
-        description (str): description of the recipe
-        serves (int): number of servings made by the recipe
-        source (str): where the recipe came from
-        tags ([Tag]): tags for the recipe
-        miscellaneous_info (str): any information not contained in the above
+    title  = models.CharField(max_length=255)
+    slug   = models.SlugField(max_length=100, unique=True)
+    serves = models.PositiveSmallIntegerField(default=1)
+    source = models.CharField(null=True, blank=True, max_length=1000)
+    description  = models.TextField()
+    prep_time    = models.DurationField(default=timedelta())
+    cooking_time = models.DurationField(default=timedelta())
+    total_time   = models.DurationField(default=timedelta())
 
-    Relationships:
-        The relationship with the RecipeSteps is handled in RecipeStep
-    """
-    prep_time    = models.DurationField()
-    cooking_time = models.DurationField()
-    total_time   = models.DurationField()
+    # Override the `save` function to auto generate the `slug` field.
+    def save(self, *args, **kwargs):
+        self.slug = generate_slug(Recipe, self.title)
+        return super(Recipe, self).save(*args, **kwargs)
 
-    title  = models.CharField(max_length=1000)
-    description = models.CharField(max_length=1000)
-    serves = models.PositiveSmallIntegerField()
-    source = models.CharField(max_length=1000)
+    # Override the `get_absolute_url` to provide a preview link on the admin page.
+    def get_absolute_url(self):
+        return reverse('recipe_view', kwargs={'slug': self.slug})
 
-    tags = models.ManyToManyField(Tag)
-    miscellaneous_info = models.CharField(max_length=1000)
+    def __str__(self):
+        return self.title
 
+# == `Ingredient` ==
+class Ingredient(models.Model):
+    # An `Ingredient` models a recipe ingredient.
+
+    name = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.name
+
+# == `RecipeStep` ==
 class RecipeStep(models.Model):
-    """
-    A recipe step is a numbered step in a recipe.
-
-    Attributes:
-        recipe: ([Recipe]): associated recipe
-        index (int): ordering in the recipe
-        instruction (str): what to do in the step
-
-    Relationships:
-        The relationship with the IngredientQuantities is handled in IngredientQuantity.
-    """
+    # A `RecipeStep` is a numbered step in a `Recipe`. 
+    # The object's `description` text should reference the parent `Recipe` object's
+    # `IngredientQuantity` objects, though there's no foreign key relationship dictating
+    # how this should be done.
 
     class Meta:
         default_related_name = 'recipe_step_set'
 
-    recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
-    index = models.PositiveSmallIntegerField(default=0)
-    instruction = models.CharField(max_length=1000)
+    recipe = models.ForeignKey(Recipe)
+    number = models.PositiveSmallIntegerField()
+    description = models.TextField()
 
-# TODO: min_value=0.0 not allowed by django??
-# TODO: add field for countability for miscellaneous physical quantities?
-# Consider 'two dashes salt' versus 'two handfuls strawberries.'
+# == `IngredientQuantity` ==
 class IngredientQuantity(models.Model):
-    """
-    An ingredient quantity is an amount of a particular ingredient.
-
-    Attributes:
-        ingredient ([Ingredient]): associated ingredient
-        recipe_step ([RecipeStep]): associated recipe step
-        index (int): ordering in the recipe step
-        physical_quantity (str): 'length', 'area', 'volume', 'mass', 'count',
-            'miscellaneous'
-        measure (float): amount (in base units for `physical_quantity`) of
-            `ingredient`
-
-            The base units are as follows:
-                length          meter
-                area            square meter
-                volume          cubic meter
-                mass            kilogram
-                count           N/A
-                miscellaneous   N/A
-
-        unit_name (str|null): if `physical_quantity` is 'miscellaneous',
-            name of unit used to measure `ingredient` (e.g. 'stalk')
-        preparation (str|null): how the ingredient is to be prepared
-    """
+    # An `IngredientQuantity` is a measure of a particular 
+    # `Ingredient` in a `Recipe`.
 
     class Meta:
         default_related_name = 'ingredient_quantity_set'
-        verbose_name_plural = 'ingredient quantities'
+        verbose_name_plural  = 'ingredient quantities'
 
-    class PhysicalQuantities:
-        length, area, volume, mass, count, miscellaneous = range(6)
+    class PhysicalUnit:
+        length, volume, mass, count, miscellaneous = range(5)
 
-    ingredient = models.ForeignKey(Ingredient, on_delete=models.PROTECT)
-    recipe_step = models.ForeignKey(RecipeStep, on_delete=models.CASCADE)
-    index = models.PositiveSmallIntegerField(default=0)
-    physical_quantity = models.CharField(
+    # `measure` is the amount (in base units of `physical_unit`) of `ingredient`.
+    # If `physical_unit` is "miscellaneous", then `unit_name`
+    # is used to measure `ingredient` (e.g. "stalk").
+    measure   = models.FloatField()
+    unit_name = models.CharField(null=True, blank=True, max_length=100)
+    physical_unit = models.CharField(
+        null=True,
         max_length=1,
         choices=(
-            (PhysicalQuantities.length, 'length'),
-            (PhysicalQuantities.area, 'area'),
-            (PhysicalQuantities.volume, 'volume'),
-            (PhysicalQuantities.mass, 'mass'),
-            (PhysicalQuantities.count, 'count'),
-            (PhysicalQuantities.miscellaneous, 'miscellaneous'),
+            (PhysicalUnit.length, 'length'), # meters
+            (PhysicalUnit.volume, 'volume'), # cubic meter
+            (PhysicalUnit.mass, 'mass'),     # kilograms
+            (PhysicalUnit.count, 'count'), 
+            (PhysicalUnit.miscellaneous, 'miscellaneous')
         )
     )
-    measure = models.FloatField()
-    unit_name = models.CharField(null=True, blank=True, max_length=100)
+
+    # `ingredient` is the `Ingredient` measured; `preparation` should indicate how it's prepared (e.g. chopped).
+    ingredient  = models.ForeignKey(Ingredient, on_delete=models.PROTECT)
     preparation = models.CharField(null=True, blank=True, max_length=100)
+    
+    # `recipe` is the `Recipe` to which this `IngredientQuantity` belongs.
+    # Expect deleting a `Recipe` to delete all associated `IngredientQuantity`
+    # objects but leave the `Ingredient` objects untouched.
+    recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
+
