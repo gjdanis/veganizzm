@@ -3,7 +3,17 @@
     border: solid green;
   }
 
-  .social-links a {
+  .social-links {
+    padding-top: 20px;
+    text-align: center;
+  }
+
+  .lets-chat {
+    border-bottom: solid 1px gray;
+    text-align: center;
+  }
+  .connect {
+    padding-right: 10px;
     text-decoration: none;
   }
 
@@ -49,16 +59,37 @@
 
   /* MEDIA QUERIES */
   @media screen and (min-width: 47.5em ) {
-    .left-column { 
-      margin-right: 19.5em; 
-    }
-
-    .right-column { 
-      position: absolute; top: 0; right: 0; width: 18.75em; 
-    }   
+  .left-column { 
+    margin-right: 19.5em; 
   }
+
+  .right-column { 
+    position: absolute; top: 0; right: 0; width: 18.75em; 
+  }   
+}
 </style>
 
+<head>
+  <title>Veganizzm</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+  <!-- <header class="landing-background">
+    <div class="landing-header-controls">
+      <a href="http://www.veganizzm.com"><img class="landing-veganizzm-logo" src="/static/images/landing/new-veganizzm-logo.png"></a>
+    </div>
+
+    <nav class="landing-title-background">
+      <ul class="landing-navigation">
+        <li class="landing-navigation-about"><a href="http://veganizzm.com/about/">About</a></li>
+        <li class="landing-navigation-recipes"><a href="http://veganizzm.com/recipizzies/">Why Vegan</a></li>
+        <li class="landing-navigation-why-vegan"><a href="http://veganizzm.com/why-vegan/">Recipes</a></li>
+        <li class="landing-navigation-press"><a href="http://veganizzm.com/press/">Press</a></li>
+        <li class="landing-navigation-contact"><a href="http://veganizzm.com/contact/">Contact</a></li>
+      </ul>
+    </nav>
+ -->
 <div>
   <header>
     {% include "header.html" %}
@@ -68,19 +99,72 @@
       <h2>Left Column</h2>
       <p> PARAGRAPH 1 </p>
       <p> PARAGRAPH 2 </p>
+      <p> PARAGRAPH 1 </p>
+      <p> PARAGRAPH 2 </p>
+      <p> PARAGRAPH 1 </p>
+      <p> PARAGRAPH 2 </p>
+      <p> PARAGRAPH 1 </p>
+      <p> PARAGRAPH 2 </p>
+      <p> PARAGRAPH 1 </p>
+      <p> PARAGRAPH 2 </p>
+      <p> PARAGRAPH 1 </p>
+      <p> PARAGRAPH 2 </p>
+      <p> PARAGRAPH 1 </p>
+      <p> PARAGRAPH 2 </p>
+      <p> PARAGRAPH 1 </p>
+      <p> PARAGRAPH 2 </p>
+
     </div>
     <div class="right-column">
-      <div class="social-links">
-        <a href="http://instagram.com/veganizzm" target="_blank"><img src="/static/images/landing/instagram.png">
-        <a href="http://pinterest.com/veganizzm" target="_blank"><img src="/static/images/landing/pinterest.png">
-        <a href="https://twitter.com/veganizzm" target="_blank"><img src="/static/images/landing/twitter.png">
-        <a href="https://www.facebook.com/veganizzm" target="_blank"><img src="/static/images/landing/facebook.png">
+        <div class="lets-chat">
+          <img src="static/images/landing/letschat.png">
+        </div>
+        <div class="social-links">
+          <a class="connect" href="https://www.facebook.com/veganizzm" target="_blank"><img src="/static/images/landing/social/facebook.png"></a>
+          <a class="connect" href="http://instagram.com/veganizzm" target="_blank"><img src="/static/images/landing/social/instagram.png"></a>
+          <a class="connect" href="http://pinterest.com/veganizzm" target="_blank"><img src="/static/images/landing/social/pinterest.png"></a>
+          <a class="connect" href="https://twitter.com/veganizzm" target="_blank"><img src="/static/images/landing/social/twitter.png"></a>
+          <a class="connect" href="https://www.veganizzm.tumblr.com" target="_blank"><img src="/static/images/landing/social/tumblr.png"></a>
+        </div>
+        <div class="mailchimp-div">
+
+            <!-- Begin MailChimp Signup Form -->
+            <link href="//cdn-images.mailchimp.com/embedcode/classic-10_7.css" rel="stylesheet" type="text/css">
+            <style type="text/css">
+              #mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; }
+              /* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
+                 We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+            </style>
+            <div id="mc_embed_signup">
+            <form action="//veganizzm.us9.list-manage.com/subscribe/post?u=ce42b5463048557702f41462c&amp;id=7668fb8533" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+                <div id="mc_embed_signup_scroll">
+              <h2>Get new Veganizzm posts delivered to your inbox!</h2>
+            <div class="indicates-required"><span class="asterisk">*</span> indicates required</div>
+            <div class="mc-field-group">
+              <label for="mce-EMAIL">Email Address  <span class="asterisk">*</span>
+            </label>
+              <input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL">
+            </div>
+              <div id="mce-responses" class="clear">
+                <div class="response" id="mce-error-response" style="display:none"></div>
+                <div class="response" id="mce-success-response" style="display:none"></div>
+              </div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_ce42b5463048557702f41462c_7668fb8533" tabindex="-1" value=""></div>
+                <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+                </div>
+            </form>
+            </div>
+            <script type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script><script type='text/javascript'>(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';fnames[3]='MMERGE3';ftypes[3]='address';fnames[4]='MMERGE4';ftypes[4]='imageurl';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
+            <!--End mc_embed_signup-->
+
+
+
+
+
+
       </div>
     </div>
+      <footer>
+      {% include "footer.html" %}
+      </footer>
   </div>
-  <!-- TODO IZZY: move to template -->
-  <footer>
-    <p><a href="#">Contact</a> | <a href="#">Sitemap</a> | <a href="#">Privacy Policy</a></p>
-    <p>&copy;2016 Copyright Veganizzm</p>
-  </footer>
-</div>
