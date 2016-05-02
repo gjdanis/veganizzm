@@ -1,5 +1,6 @@
 *.sqlite3
 migrations/
+docs/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
