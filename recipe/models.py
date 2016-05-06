@@ -1,6 +1,6 @@
 from django.db                import models
-from datetime                 import timedelta
 from django.core.urlresolvers import reverse
+from datetime                 import timedelta
 from veganizzm.utilities      import generate_slug
 
 # == `Recipe` ==
@@ -9,14 +9,20 @@ class Recipe(models.Model):
     # contain any `RecipeStep` objects. Instead, each `RecipeStep`
     # has a foreign key to a `Recipe`.
 
-    title  = models.CharField(max_length=255)
-    slug   = models.SlugField(max_length=100, unique=True)
-    serves = models.PositiveSmallIntegerField(default=1)
-    source = models.CharField(null=True, blank=True, max_length=1000)
-    description  = models.TextField()
+    title = models.CharField(max_length=255)
+    slug  = models.SlugField(max_length=100, unique=True, editable=False)
+    makes = models.PositiveSmallIntegerField(null=True, blank=True)
+
+    # Optional preceding text for a `Recipe`.
+    description = models.TextField(null=True, blank=True)
+
+    # How long it takes to make this `Recipe`.
     prep_time    = models.DurationField(default=timedelta())
     cooking_time = models.DurationField(default=timedelta())
     total_time   = models.DurationField(default=timedelta())
+
+    # Link to source of the recipe, if applicable.
+    web_reference = models.URLField(null=True, blank=True)
 
     # Override the `save` function to auto generate the `slug` field.
     def save(self, *args, **kwargs):
@@ -30,11 +36,50 @@ class Recipe(models.Model):
     def __str__(self):
         return self.title
 
+# == `Unit` ==
+class Unit(models.Model):
+    class Meta:
+        ordering = ['long_name']
+
+    PhysicalUnits = (
+        (0, 'Other'),
+        (1, 'Mass'),
+        (2, 'Volume'),
+    )
+
+    Systems = (
+        (0, 'N/A'),
+        (1, 'SI'),
+        (2, 'Imperial'),
+    )
+
+    # Name of the unit and short name of the unit (e.g. cups/c).
+    # TODO: do we need a field for plurals?
+    long_name  = models.CharField(max_length=60, unique=True)
+    short_name = models.CharField(max_length=60, unique=True)
+    
+    # For conversion purposes. 
+    physical_unit = models.IntegerField(choices=PhysicalUnits)
+    system = models.IntegerField(choices=Systems) 
+
+    def __str__(self):
+        return self.short_name
+
 # == `Ingredient` ==
 class Ingredient(models.Model):
     # An `Ingredient` models a recipe ingredient.
+    
+    class Meta:
+        ordering = ['name']
+    
+    name = models.CharField(max_length=255, unique=True)
 
-    name = models.CharField(max_length=255)
+    # External link to an example.
+    web_reference = models.URLField(null=True, blank=True)
+
+    def save(self):
+        self.name = self.name.lower()
+        super(Ingredient, self).save()
 
     def __str__(self):
         return self.name
@@ -53,6 +98,60 @@ class RecipeStep(models.Model):
     number = models.PositiveSmallIntegerField()
     description = models.TextField()
 
+# == `RecipeSection` ==
+class RecipeSection(models.Model):
+    # Used to model the subsections within a `Recipe`
+    # For example, if the `Recipe` is Cinnamon Buns, but we want to model
+    # the Icing component of the Cinnamon Buns `Recipe`
+    
+    class Meta:
+        ordering = ['title']
+
+    title  = models.CharField(max_length=255, unique=True)
+    recipe = models.ForeignKey(Recipe)
+
+    def __str__(self):
+        return self.title
+
+# == `RecipeEquipment` ==
+class RecipeEquipment(models.Model):
+    # Used to model equipment used in a `Recipe`.
+
+    class Meta:
+        ordering = ['name']
+        verbose_name_plural = 'recipe equipment'
+
+    name   = models.CharField(max_length=255, unique=True)
+    recipe = models.ForeignKey(Recipe)
+
+    # External link to an example.
+    web_reference = models.URLField(null=True, blank=True)
+
+    def save(self):
+        self.name = self.name.lower()
+        super(RecipeEquipment, self).save()
+
+    def __str__(self):
+        return self.name
+
+# == `RecipeTag`
+class RecipeTag(models.Model):
+    # Model used for indexing a `Recipe`.
+    
+    class Meta:
+        ordering = ['name']
+
+    name = models.CharField(max_length=255, unique=True)
+
+    # While the name is lower cased, django provides an easy way to uper case it
+    # on the template: {{ "obj.name"|title }}.
+    def save(self):
+        self.name = self.name.lower()
+        super(RecipeTag, self).save()
+
+    def __str__(self):
+        return self.name
+
 # == `IngredientQuantity` ==
 class IngredientQuantity(models.Model):
     # An `IngredientQuantity` is a measure of a particular 
@@ -60,34 +159,37 @@ class IngredientQuantity(models.Model):
 
     class Meta:
         default_related_name = 'ingredient_quantity_set'
-        verbose_name_plural  = 'ingredient quantities'
-
-    class PhysicalUnit:
-        length, volume, mass, count, miscellaneous = range(5)
+        verbose_name_plural  = 'recipe ingredient quantities'
 
     # `measure` is the amount (in base units of `physical_unit`) of `ingredient`.
-    # If `physical_unit` is "miscellaneous", then `unit_name`
-    # is used to measure `ingredient` (e.g. "stalk").
-    measure   = models.FloatField()
-    unit_name = models.CharField(null=True, blank=True, max_length=100)
-    physical_unit = models.CharField(
-        null=True,
-        max_length=1,
-        choices=(
-            (PhysicalUnit.length, 'length'), # meters
-            (PhysicalUnit.volume, 'volume'), # cubic meter
-            (PhysicalUnit.mass, 'mass'),     # kilograms
-            (PhysicalUnit.count, 'count'), 
-            (PhysicalUnit.miscellaneous, 'miscellaneous')
-        )
-    )
+    # It is a `CharField` to allow for fractions, and range quantities (e.g. 2-3)
+    # 'unit' should reference a 'Unit', so we can convert, if needed.
+    measure  = models.CharField(max_length=10, null=True, blank=True)
+    unit = models.ForeignKey(Unit, null=True, blank=True)
 
-    # `ingredient` is the `Ingredient` measured; `preparation` should indicate how it's prepared (e.g. chopped).
+    # `ingredient` is the `Ingredient` measured; `preparation`
+    # should indicate how it's prepared (e.g. chopped).
     ingredient  = models.ForeignKey(Ingredient, on_delete=models.PROTECT)
     preparation = models.CharField(null=True, blank=True, max_length=100)
-    
+
     # `recipe` is the `Recipe` to which this `IngredientQuantity` belongs.
     # Expect deleting a `Recipe` to delete all associated `IngredientQuantity`
     # objects but leave the `Ingredient` objects untouched.
-    recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
+    recipe = models.ForeignKey(Recipe)
 
+    # A recipe may be divided into sections. Each section associates with 
+    # some `IngredientQuantity`
+    recipe_section = models.ForeignKey(
+        RecipeSection,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL
+    )
+
+    def __str__(self):
+        return "{0} {1} {2} {3}".format(
+            self.measure,
+            self.unit,
+            self.ingredient,
+            self.preparation
+        )
