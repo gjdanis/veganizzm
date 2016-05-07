@@ -35,8 +35,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # `pip3 install django_summernote`
+    'django_summernote',
+    # `pip3 install django-taggit`
+    'taggit',
     'blog.apps.BlogConfig',
-    'recipe.apps.RecipeConfig'
+    'recipe.apps.RecipeConfig',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -127,3 +131,10 @@ STATICFILES_DIRS = [
 # --
 # https://docs.djangoproject.com/ja/1.9/howto/initial-data/
 FIXTURE_DIRS = (os.path.join(os.path.join(BASE_DIR, 'veganizzm'), 'fixtures'),)
+
+# For files and common media
+# --
+# https://docs.djangoproject.com/en/1.9/howto/static-files/
+MEDIA_ROOT = os.path.join(os.path.dirname(__file__), 'media',)
+MEDIA_URL  = '/media/'
+

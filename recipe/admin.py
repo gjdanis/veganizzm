@@ -5,27 +5,42 @@ from django         import forms
 from recipe.models  import *
 
 # Admin configuration for the `recipe` application. 
-# Only `Recipe`, `RecipeTag`, `Ingredient`, and `Unit` are editable on admin. `RecipeStep`
-# and `IngredientQuantity` should be created or modified inline
-# from a `Recipe`.
+# Only `Unit`, `Ingredient`, `RecipeEquipment`, and `Recipe`
+# are editable on admin. Everything else should be modified from within a `Recipe`.
 
 class AdminInlineIngredientQuantityForm(forms.ModelForm):
+    # Use `SummernoteWidget` for rich text editing.
     class Meta:
         model   = IngredientQuantity
         fields  = '__all__'
-        # Reduce the width on the measure field.
         widgets = {
             'measure': TextInput(attrs={'size': '5'}),
+        }
+    pass
+
+class AdminInlineRecipeStepForm(forms.ModelForm):
+    # Use `SummernoteWidget` for rich text editing.
+    class Meta:
+        model   = RecipeStep
+        fields  = '__all__'
+        widgets = {
+            'content': SummernoteWidget(attrs={'width': '600px', 'height': '250px'}),
+        }
+    pass
+
+class AdminRecipeForm(forms.ModelForm):
+    # Use `SummernoteWidget` for rich text editing.
+    class Meta:
+        model   = Recipe
+        fields  = '__all__'
+        widgets = {
+            'description': SummernoteWidget(attrs={'width': '600px', 'height': '250px'}),
         }
     pass
 
 class AdminInlineRecipeSection(admin.TabularInline):
     extra = 0
     model = RecipeSection
-
-class AdminInlineRecipeEquipment(admin.TabularInline):
-    extra = 0
-    model = RecipeEquipment
 
 class AdminInlineIngredientQuantity(admin.TabularInline):
     extra = 0
@@ -35,6 +50,7 @@ class AdminInlineIngredientQuantity(admin.TabularInline):
 class AdminInlineRecipeStep(admin.TabularInline):
     extra = 0
     model = RecipeStep
+    form  = AdminInlineRecipeStepForm
 
 @admin.register(Unit)
 class AdminUnit(admin.ModelAdmin):
@@ -49,17 +65,18 @@ class AdminUnit(admin.ModelAdmin):
 class AdminIngredient(admin.ModelAdmin):
     pass
 
-@admin.register(RecipeTag)
-class AdminRecipeTag(admin.ModelAdmin):
+@admin.register(RecipeEquipment)
+class AdminRecipeEquipment(admin.ModelAdmin):
     pass
-    
+
 @admin.register(Recipe)
 class AdminRecipe(admin.ModelAdmin):
     inlines = [
         AdminInlineRecipeSection,
-        AdminInlineRecipeEquipment,
         AdminInlineIngredientQuantity,
         AdminInlineRecipeStep,
     ]
+    filter_horizontal = ('recipe_equipment',)
+    form = AdminRecipeForm
 
 

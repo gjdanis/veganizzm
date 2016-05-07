@@ -22,7 +22,7 @@ Including another URL conf
     `url(r'^blog/', include('blog.urls'))`
 """
 
-from django.conf.urls import url
+from django.conf.urls import url, include
 from django.contrib   import admin
 from django.conf      import settings
 from django.conf.urls.static import static
@@ -31,8 +31,12 @@ import blog.views
 import recipe.views
 
 urlpatterns = [
+    url(r'^summernote/', include('django_summernote.urls')),
     url(r'^$', blog.views.home_view),
     url(r'^admin/', admin.site.urls),
     url(r'^posts/(?P<slug>[-\w\d\_]+)/$', blog.views.post_view, name='post_view'),
     url(r'^recipes/(?P<slug>[-\w\d\_]+)/$', recipe.views.recipe_view, name='recipe_view'),
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+]
+
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

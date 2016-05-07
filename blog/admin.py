@@ -2,6 +2,7 @@ from django.contrib import admin
 from django         import forms
 from blog.models    import Post
 from django.forms   import TextInput
+from django_summernote.widgets import SummernoteWidget
 
 # Admin configuration for the `blog` application. 
 # `Post` is the only editable model on admin.
@@ -12,6 +13,9 @@ class AdminPostForm(forms.ModelForm):
     class Meta:
         model  = Post
         fields = '__all__'
+        widgets = {
+            'content': SummernoteWidget(attrs={'width': '100%'}),
+        }
     pass
 
 @admin.register(Post)

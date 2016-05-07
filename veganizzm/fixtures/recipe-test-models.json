@@ -1,0 +1,1563 @@
+[
+{
+  "model": "recipe.recipe",
+  "pk": 1,
+  "fields": {
+    "title": "Glazed Cinnamon Buns",
+    "slug": "glazed-cinnamon-buns",
+    "makes": 16,
+    "description": "",
+    "prep_time": "00:00:00",
+    "cooking_time": "00:00:00",
+    "total_time": "00:00:00",
+    "web_reference": "",
+    "recipe_equipment": []
+  }
+},
+{
+  "model": "recipe.recipe",
+  "pk": 4,
+  "fields": {
+    "title": "Maple-Glazed Grilled Tempeh",
+    "slug": "maple-glazed-grilled-tempeh-1",
+    "makes": null,
+    "description": "",
+    "prep_time": "00:00:00",
+    "cooking_time": "00:00:00",
+    "total_time": "00:00:00",
+    "web_reference": null,
+    "recipe_equipment": []
+  }
+},
+{
+  "model": "recipe.recipe",
+  "pk": 5,
+  "fields": {
+    "title": "Vegan Chocolate Chip S'more Cookies",
+    "slug": "vegan-chocolate-chip-smore-cookies-1",
+    "makes": null,
+    "description": "",
+    "prep_time": "00:00:00",
+    "cooking_time": "00:00:00",
+    "total_time": "00:00:00",
+    "web_reference": null,
+    "recipe_equipment": []
+  }
+},
+{
+  "model": "recipe.recipe",
+  "pk": 6,
+  "fields": {
+    "title": "Espinacas con Garbanzos",
+    "slug": "espinacas-con-garbanzos-1",
+    "makes": 4,
+    "description": "",
+    "prep_time": "00:00:00",
+    "cooking_time": "00:00:00",
+    "total_time": "00:00:00",
+    "web_reference": "",
+    "recipe_equipment": []
+  }
+},
+{
+  "model": "recipe.recipe",
+  "pk": 7,
+  "fields": {
+    "title": "Lime-Marinated Golden Beet, Avocado, Chickpea Salad",
+    "slug": "lime-marinated-golden-beet-avocado-chickpea-salad-1",
+    "makes": null,
+    "description": "",
+    "prep_time": "00:00:00",
+    "cooking_time": "00:00:00",
+    "total_time": "00:00:00",
+    "web_reference": "",
+    "recipe_equipment": []
+  }
+},
+{
+  "model": "recipe.recipe",
+  "pk": 8,
+  "fields": {
+    "title": "Sweet Potato, Carrot, Chickpea, Mushroom, Broccoli Soup",
+    "slug": "sweet-potato-carrot-chickpea-mushroom-broccoli-soup",
+    "makes": null,
+    "description": "",
+    "prep_time": "00:00:00",
+    "cooking_time": "00:00:00",
+    "total_time": "00:00:00",
+    "web_reference": "",
+    "recipe_equipment": []
+  }
+},
+{
+  "model": "recipe.recipe",
+  "pk": 9,
+  "fields": {
+    "title": "Peanut Butter Cinnamon Baked Apples",
+    "slug": "peanut-butter-cinnamon-baked-apples",
+    "makes": null,
+    "description": "",
+    "prep_time": "00:00:00",
+    "cooking_time": "00:00:00",
+    "total_time": "00:00:00",
+    "web_reference": "",
+    "recipe_equipment": [
+      1
+    ]
+  }
+},
+{
+  "model": "recipe.unit",
+  "pk": 1,
+  "fields": {
+    "long_name": "cups",
+    "short_name": "C",
+    "physical_unit": 2,
+    "system": 2
+  }
+},
+{
+  "model": "recipe.unit",
+  "pk": 2,
+  "fields": {
+    "long_name": "package",
+    "short_name": "pkg",
+    "physical_unit": 0,
+    "system": 0
+  }
+},
+{
+  "model": "recipe.unit",
+  "pk": 3,
+  "fields": {
+    "long_name": "teaspoon",
+    "short_name": "t",
+    "physical_unit": 2,
+    "system": 2
+  }
+},
+{
+  "model": "recipe.unit",
+  "pk": 4,
+  "fields": {
+    "long_name": "Tablespoon",
+    "short_name": "T",
+    "physical_unit": 2,
+    "system": 2
+  }
+},
+{
+  "model": "recipe.unit",
+  "pk": 5,
+  "fields": {
+    "long_name": "drop",
+    "short_name": "drop",
+    "physical_unit": 0,
+    "system": 0
+  }
+},
+{
+  "model": "recipe.unit",
+  "pk": 6,
+  "fields": {
+    "long_name": "dash",
+    "short_name": "dash",
+    "physical_unit": 0,
+    "system": 0
+  }
+},
+{
+  "model": "recipe.unit",
+  "pk": 7,
+  "fields": {
+    "long_name": "clove",
+    "short_name": "clove",
+    "physical_unit": 0,
+    "system": 0
+  }
+},
+{
+  "model": "recipe.unit",
+  "pk": 8,
+  "fields": {
+    "long_name": "ounce",
+    "short_name": "oz",
+    "physical_unit": 1,
+    "system": 1
+  }
+},
+{
+  "model": "recipe.unit",
+  "pk": 9,
+  "fields": {
+    "long_name": "pound",
+    "short_name": "lb",
+    "physical_unit": 1,
+    "system": 2
+  }
+},
+{
+  "model": "recipe.unit",
+  "pk": 10,
+  "fields": {
+    "long_name": "pinch",
+    "short_name": "pinch",
+    "physical_unit": 0,
+    "system": 0
+  }
+},
+{
+  "model": "recipe.unit",
+  "pk": 11,
+  "fields": {
+    "long_name": "small",
+    "short_name": "small",
+    "physical_unit": 0,
+    "system": 0
+  }
+},
+{
+  "model": "recipe.ingredient",
+  "pk": 1,
+  "fields": {
+    "name": "all purpose \ufb02our",
+    "web_reference": null
+  }
+},
+{
+  "model": "recipe.ingredient",
+  "pk": 2,
+  "fields": {
+    "name": "active dry yeast",
+    "web_reference": null
+  }
+},
+{
+  "model": "recipe.ingredient",
+  "pk": 3,
+  "fields": {
+    "name": "white sugar",
+    "web_reference": null
+  }
+},
+{
+  "model": "recipe.ingredient",
+  "pk": 4,
+  "fields": {
+    "name": "vegan margarine",
+    "web_reference": null
+  }
+},
+{
+  "model": "recipe.ingredient",
+  "pk": 5,
+  "fields": {
+    "name": "salt",
+    "web_reference": null
+  }
+},
+{
+  "model": "recipe.ingredient",
+  "pk": 6,
+  "fields": {
+    "name": "unsweetened applesauce",
+    "web_reference": null
+  }
+},
+{
+  "model": "recipe.ingredient",
+  "pk": 7,
+  "fields": {
+    "name": "brown sugar",
+    "web_reference": null
+  }
+},
+{
+  "model": "recipe.ingredient",
+  "pk": 8,
+  "fields": {
+    "name": "cinnamon",
+    "web_reference": null
+  }
+},
+{
+  "model": "recipe.ingredient",
+  "pk": 9,
+  "fields": {
+    "name": "powdered sugar",
+    "web_reference": null
+  }
+},
+{
+  "model": "recipe.ingredient",
+  "pk": 10,
+  "fields": {
+    "name": "icing sugar",
+    "web_reference": null
+  }
+},
+{
+  "model": "recipe.ingredient",
+  "pk": 11,
+  "fields": {
+    "name": "water",
+    "web_reference": null
+  }
+},
+{
+  "model": "recipe.ingredient",
+  "pk": 13,
+  "fields": {
+    "name": "lemon extract",
+    "web_reference": null
+  }
+},
+{
+  "model": "recipe.ingredient",
+  "pk": 14,
+  "fields": {
+    "name": "nutmeg",
+    "web_reference": null
+  }
+},
+{
+  "model": "recipe.ingredient",
+  "pk": 15,
+  "fields": {
+    "name": "apple",
+    "web_reference": ""
+  }
+},
+{
+  "model": "recipe.ingredient",
+  "pk": 16,
+  "fields": {
+    "name": "oats",
+    "web_reference": null
+  }
+},
+{
+  "model": "recipe.ingredient",
+  "pk": 17,
+  "fields": {
+    "name": "raisins",
+    "web_reference": null
+  }
+},
+{
+  "model": "recipe.ingredient",
+  "pk": 18,
+  "fields": {
+    "name": "peanut butter",
+    "web_reference": null
+  }
+},
+{
+  "model": "recipe.ingredient",
+  "pk": 19,
+  "fields": {
+    "name": "maple syrup",
+    "web_reference": null
+  }
+},
+{
+  "model": "recipe.ingredient",
+  "pk": 20,
+  "fields": {
+    "name": "walnuts",
+    "web_reference": null
+  }
+},
+{
+  "model": "recipe.ingredient",
+  "pk": 21,
+  "fields": {
+    "name": "tempeh",
+    "web_reference": null
+  }
+},
+{
+  "model": "recipe.ingredient",
+  "pk": 22,
+  "fields": {
+    "name": "vegetable broth",
+    "web_reference": null
+  }
+},
+{
+  "model": "recipe.ingredient",
+  "pk": 23,
+  "fields": {
+    "name": "olive oil",
+    "web_reference": null
+  }
+},
+{
+  "model": "recipe.ingredient",
+  "pk": 24,
+  "fields": {
+    "name": "garlic",
+    "web_reference": null
+  }
+},
+{
+  "model": "recipe.ingredient",
+  "pk": 25,
+  "fields": {
+    "name": "hot pepper flakes",
+    "web_reference": null
+  }
+},
+{
+  "model": "recipe.ingredient",
+  "pk": 26,
+  "fields": {
+    "name": "soy sauce",
+    "web_reference": null
+  }
+},
+{
+  "model": "recipe.ingredient",
+  "pk": 27,
+  "fields": {
+    "name": "apple cider vinegar",
+    "web_reference": null
+  }
+},
+{
+  "model": "recipe.ingredient",
+  "pk": 28,
+  "fields": {
+    "name": "ground flax seed",
+    "web_reference": null
+  }
+},
+{
+  "model": "recipe.ingredient",
+  "pk": 29,
+  "fields": {
+    "name": "vanilla extract",
+    "web_reference": null
+  }
+},
+{
+  "model": "recipe.ingredient",
+  "pk": 30,
+  "fields": {
+    "name": "baking powder",
+    "web_reference": null
+  }
+},
+{
+  "model": "recipe.ingredient",
+  "pk": 31,
+  "fields": {
+    "name": "baking soda",
+    "web_reference": null
+  }
+},
+{
+  "model": "recipe.ingredient",
+  "pk": 32,
+  "fields": {
+    "name": "vegan chocolate chips",
+    "web_reference": null
+  }
+},
+{
+  "model": "recipe.ingredient",
+  "pk": 33,
+  "fields": {
+    "name": "vegan marshmallows",
+    "web_reference": "http://www.sweetandsara.com/"
+  }
+},
+{
+  "model": "recipe.ingredient",
+  "pk": 34,
+  "fields": {
+    "name": "vegan graham crackers",
+    "web_reference": null
+  }
+},
+{
+  "model": "recipe.ingredient",
+  "pk": 35,
+  "fields": {
+    "name": "chickpeas",
+    "web_reference": ""
+  }
+},
+{
+  "model": "recipe.ingredient",
+  "pk": 36,
+  "fields": {
+    "name": "spinich",
+    "web_reference": ""
+  }
+},
+{
+  "model": "recipe.ingredient",
+  "pk": 37,
+  "fields": {
+    "name": "sweet potato",
+    "web_reference": ""
+  }
+},
+{
+  "model": "recipe.ingredient",
+  "pk": 38,
+  "fields": {
+    "name": "cumin",
+    "web_reference": ""
+  }
+},
+{
+  "model": "recipe.ingredient",
+  "pk": 39,
+  "fields": {
+    "name": "balsamic vinegar",
+    "web_reference": ""
+  }
+},
+{
+  "model": "recipe.ingredient",
+  "pk": 40,
+  "fields": {
+    "name": "paprika",
+    "web_reference": ""
+  }
+},
+{
+  "model": "recipe.ingredient",
+  "pk": 42,
+  "fields": {
+    "name": "beet",
+    "web_reference": ""
+  }
+},
+{
+  "model": "recipe.ingredient",
+  "pk": 43,
+  "fields": {
+    "name": "golden beet",
+    "web_reference": ""
+  }
+},
+{
+  "model": "recipe.ingredient",
+  "pk": 44,
+  "fields": {
+    "name": "carrot",
+    "web_reference": ""
+  }
+},
+{
+  "model": "recipe.ingredient",
+  "pk": 45,
+  "fields": {
+    "name": "lime",
+    "web_reference": ""
+  }
+},
+{
+  "model": "recipe.ingredient",
+  "pk": 46,
+  "fields": {
+    "name": "avocado",
+    "web_reference": ""
+  }
+},
+{
+  "model": "recipe.ingredient",
+  "pk": 47,
+  "fields": {
+    "name": "onion",
+    "web_reference": ""
+  }
+},
+{
+  "model": "recipe.ingredient",
+  "pk": 48,
+  "fields": {
+    "name": "vegetable stock",
+    "web_reference": ""
+  }
+},
+{
+  "model": "recipe.ingredient",
+  "pk": 49,
+  "fields": {
+    "name": "broccoli florets",
+    "web_reference": ""
+  }
+},
+{
+  "model": "recipe.recipestep",
+  "pk": 1,
+  "fields": {
+    "recipe": 1,
+    "number": 1,
+    "content": "In a large bowl, dissolve yeast in the warm soy/almond milk. Set aside 5-6 minutes, until it foams up. When it\u2019s foamy stir in sugar, margarine, applesauce, and salt. Stir in the flour."
+  }
+},
+{
+  "model": "recipe.recipestep",
+  "pk": 2,
+  "fields": {
+    "recipe": 1,
+    "number": 2,
+    "content": "Place the dough on a lightly floured surface and knead until smooth. To avoid sticking, sprinkle the dough with a bit more flour. Aim to use just enough to keep it from being sticky but not so much that the dough becomes overly dense or heavy."
+  }
+},
+{
+  "model": "recipe.recipestep",
+  "pk": 3,
+  "fields": {
+    "recipe": 1,
+    "number": 3,
+    "content": "Ball the dough up and place it in a lightly greased bowl. Cover and let it rise in a warm place for 50-60 minutes, until it is about 2X the original size. Place the dough on a lightly floured surface and punch it (best part! stress relief!), then roll it into a large rectangle."
+  }
+},
+{
+  "model": "recipe.recipestep",
+  "pk": 4,
+  "fields": {
+    "recipe": 1,
+    "number": 4,
+    "content": "Preheat the oven to\u00a0<strong>400\u00ba</strong>. Prepare the filling by mixing the brown sugar and cinnamon in a small bowl. Spread softened margarine over the surface of the dough and sprinkle generously with the cinnamon-sugar mixture. Begin rolling the dough, starting at the long side, down to the bottom edge until you have a long log."
+  }
+},
+{
+  "model": "recipe.recipestep",
+  "pk": 5,
+  "fields": {
+    "recipe": 1,
+    "number": 5,
+    "content": "Slice the log into 3/4\u201d-1\u201d pieces. Place the buns about 1\u201d apart in a lightly greased baking dish. Allow them to rise in a warm place for 20-30 minutes then pop \u2018em in the oven for 15 minutes or until golden."
+  }
+},
+{
+  "model": "recipe.recipestep",
+  "pk": 6,
+  "fields": {
+    "recipe": 1,
+    "number": 6,
+    "content": "Whisk together powdered sugar, water, lemon extract, and nutmeg to make the icing. Drizzle on the buns while they are still warm."
+  }
+},
+{
+  "model": "recipe.recipestep",
+  "pk": 11,
+  "fields": {
+    "recipe": 4,
+    "number": 1,
+    "content": "Fill a medium-sized pot with water and bring to boil. Slice the tempeh into triangles: cut block in half widthwise, then cut each squre into 4 triangles. Try not to judge tempeh by it\u2019s unappealing appearance. Add the tempeh to the boiling water and cook at a simmer for 10 minutes. This removes the bitterness and makes the tempeh like a flavor sponge."
+  }
+},
+{
+  "model": "recipe.recipestep",
+  "pk": 12,
+  "fields": {
+    "recipe": 4,
+    "number": 2,
+    "content": "Combine all of the remaining ingredients in a bowl and stir to combine. Once the tempeh is cooked, add it carefully to the marinade. Allow it to marinade for at least 1 hour."
+  }
+},
+{
+  "model": "recipe.recipestep",
+  "pk": 13,
+  "fields": {
+    "recipe": 4,
+    "number": 3,
+    "content": "Preheat a skillet over medium heat. Grease with ~1 Tabelsppon of olive oil and add the tempeh, cooking each side about 10 minutes. When the second side is just about done, spoon a bit more marinade over and grill another 30 seconds."
+  }
+},
+{
+  "model": "recipe.recipestep",
+  "pk": 14,
+  "fields": {
+    "recipe": 5,
+    "number": 1,
+    "content": "Preheat oven to 350\u00ba. In a small dish, mix together the flax seed and water."
+  }
+},
+{
+  "model": "recipe.recipestep",
+  "pk": 15,
+  "fields": {
+    "recipe": 5,
+    "number": 2,
+    "content": "In a food processor or large bowl, mix together the flax mixture, margarine, sugar, and vanilla until smooth and set aside."
+  }
+},
+{
+  "model": "recipe.recipestep",
+  "pk": 16,
+  "fields": {
+    "recipe": 5,
+    "number": 3,
+    "content": "In a large bowl, stir together the flour, baking soda, baking powder, salt, chocolate chips, marshmallows, and crushed graham crackers. Add the margarine mixture and stir until well incorporated."
+  }
+},
+{
+  "model": "recipe.recipestep",
+  "pk": 17,
+  "fields": {
+    "recipe": 5,
+    "number": 4,
+    "content": "Roll into about 24-26 balls and place on a plate or pan lined with parchment paper."
+  }
+},
+{
+  "model": "recipe.recipestep",
+  "pk": 18,
+  "fields": {
+    "recipe": 5,
+    "number": 5,
+    "content": "Bake at 350\u00ba for 10-12 minutes, until marshmallow and chocolate are gooey. When the cookies are done, allow to stand 10 minutes."
+  }
+},
+{
+  "model": "recipe.recipestep",
+  "pk": 19,
+  "fields": {
+    "recipe": 6,
+    "number": 1,
+    "content": "Put a medium skillet on the stove at medium heat and add half the olive oil plus the spinach and a pinch of salt. Stir well 4-5 minutes or until the leaves are just tender. Remove from heat and set aside."
+  }
+},
+{
+  "model": "recipe.recipestep",
+  "pk": 20,
+  "fields": {
+    "recipe": 6,
+    "number": 2,
+    "content": "Heat 1 T olive oil and add the garlic, cumin, red pepper flakes and paprika. When the garlic starts to brown, add the mashed sweet potato, tomato sauce, balsamic vinegar, and the chickpeas. Cook until the chickpeas are hot and the sauce is bubbling. Season with salt and pepper to taste."
+  }
+},
+{
+  "model": "recipe.recipestep",
+  "pk": 21,
+  "fields": {
+    "recipe": 6,
+    "number": 3,
+    "content": "Add the saut\u00e9ed spinach and cook until the mixture is hot. Serve hot with a dash more paprika on top. Excellent with a drizzle of lemon juice."
+  }
+},
+{
+  "model": "recipe.recipestep",
+  "pk": 22,
+  "fields": {
+    "recipe": 7,
+    "number": 1,
+    "content": "Shred the beet and combine in a container with the lime juice and a pinch or two of salt. Allow to sit and pickle several hours or overnight in the fridge."
+  }
+},
+{
+  "model": "recipe.recipestep",
+  "pk": 23,
+  "fields": {
+    "recipe": 7,
+    "number": 2,
+    "content": "For lunch, simply combine all of the ingredients and dress with the excess lime juice and a splash of olive oil. Top with cracked pepper and red pepper flakes!"
+  }
+},
+{
+  "model": "recipe.recipestep",
+  "pk": 24,
+  "fields": {
+    "recipe": 8,
+    "number": 1,
+    "content": "In a medium pot, heat a small drizzle of olive oil and add the onion. Cook for 4-5 minutes, until they are sizzling."
+  }
+},
+{
+  "model": "recipe.recipestep",
+  "pk": 25,
+  "fields": {
+    "recipe": 8,
+    "number": 2,
+    "content": "Add the remaining ingredients and cook 15-20 minutes, until all vegetables are tender. Top with chopped ramps and cracked black pepper."
+  }
+},
+{
+  "model": "recipe.recipestep",
+  "pk": 26,
+  "fields": {
+    "recipe": 9,
+    "number": 1,
+    "content": "<p>Cut the tops and bottoms out of the apples and set to the side. Remove the \u201cguts\u201d of the apple with a spoon or knife, then replace the bottom.</p>"
+  }
+},
+{
+  "model": "recipe.recipestep",
+  "pk": 27,
+  "fields": {
+    "recipe": 9,
+    "number": 2,
+    "content": "<p>In a small bowl, add the oats and just enough water to cover. Microwave 1-2 minutes to soften them a bit. Once heated, add the raisins, walnuts, cinnamon, peanut butter, and maple syrup. Stir to combine.</p><div><br></div>"
+  }
+},
+{
+  "model": "recipe.recipestep",
+  "pk": 28,
+  "fields": {
+    "recipe": 9,
+    "number": 3,
+    "content": "<p>Scoop about 1 teaspoon of the mixture into each apple, or enough to fill. Replace the tops of the apples then wrap each one into a little bundle with aluminum foil. Pop in the oven for 30-45 minutes at 250\u00ba. Remove and allow to cool 5-10 minutes, they\u2019ll be TOASTY.</p><div><br></div>"
+  }
+},
+{
+  "model": "recipe.recipesection",
+  "pk": 1,
+  "fields": {
+    "title": "Cinnamon Buns",
+    "recipe": 1
+  }
+},
+{
+  "model": "recipe.recipesection",
+  "pk": 2,
+  "fields": {
+    "title": "Cinnamon-Sugar Filling",
+    "recipe": 1
+  }
+},
+{
+  "model": "recipe.recipesection",
+  "pk": 3,
+  "fields": {
+    "title": "Icing",
+    "recipe": 1
+  }
+},
+{
+  "model": "recipe.recipeequipment",
+  "pk": 1,
+  "fields": {
+    "name": "aluminum foil",
+    "web_reference": ""
+  }
+},
+{
+  "model": "recipe.ingredientquantity",
+  "pk": 1,
+  "fields": {
+    "measure": "4",
+    "unit": 1,
+    "ingredient": 1,
+    "preparation": "",
+    "recipe": 1,
+    "recipe_section": 1
+  }
+},
+{
+  "model": "recipe.ingredientquantity",
+  "pk": 2,
+  "fields": {
+    "measure": "1",
+    "unit": 2,
+    "ingredient": 2,
+    "preparation": "",
+    "recipe": 1,
+    "recipe_section": 1
+  }
+},
+{
+  "model": "recipe.ingredientquantity",
+  "pk": 3,
+  "fields": {
+    "measure": "1/2",
+    "unit": 1,
+    "ingredient": 3,
+    "preparation": "",
+    "recipe": 1,
+    "recipe_section": 1
+  }
+},
+{
+  "model": "recipe.ingredientquantity",
+  "pk": 4,
+  "fields": {
+    "measure": "1/3",
+    "unit": 1,
+    "ingredient": 4,
+    "preparation": "melted",
+    "recipe": 1,
+    "recipe_section": 1
+  }
+},
+{
+  "model": "recipe.ingredientquantity",
+  "pk": 5,
+  "fields": {
+    "measure": "1",
+    "unit": 3,
+    "ingredient": 5,
+    "preparation": "",
+    "recipe": 1,
+    "recipe_section": 1
+  }
+},
+{
+  "model": "recipe.ingredientquantity",
+  "pk": 6,
+  "fields": {
+    "measure": "1/2",
+    "unit": 1,
+    "ingredient": 6,
+    "preparation": "",
+    "recipe": 1,
+    "recipe_section": 1
+  }
+},
+{
+  "model": "recipe.ingredientquantity",
+  "pk": 7,
+  "fields": {
+    "measure": "1",
+    "unit": 1,
+    "ingredient": 7,
+    "preparation": "",
+    "recipe": 1,
+    "recipe_section": 2
+  }
+},
+{
+  "model": "recipe.ingredientquantity",
+  "pk": 8,
+  "fields": {
+    "measure": "2.5",
+    "unit": 4,
+    "ingredient": 8,
+    "preparation": "",
+    "recipe": 1,
+    "recipe_section": 2
+  }
+},
+{
+  "model": "recipe.ingredientquantity",
+  "pk": 9,
+  "fields": {
+    "measure": "1/3",
+    "unit": 1,
+    "ingredient": 4,
+    "preparation": "softened",
+    "recipe": 1,
+    "recipe_section": 2
+  }
+},
+{
+  "model": "recipe.ingredientquantity",
+  "pk": 10,
+  "fields": {
+    "measure": "1",
+    "unit": 1,
+    "ingredient": 9,
+    "preparation": "",
+    "recipe": 1,
+    "recipe_section": 3
+  }
+},
+{
+  "model": "recipe.ingredientquantity",
+  "pk": 11,
+  "fields": {
+    "measure": "2-3",
+    "unit": 4,
+    "ingredient": 11,
+    "preparation": "",
+    "recipe": 1,
+    "recipe_section": 3
+  }
+},
+{
+  "model": "recipe.ingredientquantity",
+  "pk": 12,
+  "fields": {
+    "measure": "3-4",
+    "unit": 5,
+    "ingredient": 13,
+    "preparation": "",
+    "recipe": 1,
+    "recipe_section": 3
+  }
+},
+{
+  "model": "recipe.ingredientquantity",
+  "pk": 13,
+  "fields": {
+    "measure": "1",
+    "unit": 6,
+    "ingredient": 14,
+    "preparation": "",
+    "recipe": 1,
+    "recipe_section": 3
+  }
+},
+{
+  "model": "recipe.ingredientquantity",
+  "pk": 21,
+  "fields": {
+    "measure": "1",
+    "unit": 2,
+    "ingredient": 21,
+    "preparation": "",
+    "recipe": 4,
+    "recipe_section": null
+  }
+},
+{
+  "model": "recipe.ingredientquantity",
+  "pk": 22,
+  "fields": {
+    "measure": "3/4",
+    "unit": 1,
+    "ingredient": 22,
+    "preparation": "",
+    "recipe": 4,
+    "recipe_section": null
+  }
+},
+{
+  "model": "recipe.ingredientquantity",
+  "pk": 23,
+  "fields": {
+    "measure": "2",
+    "unit": 4,
+    "ingredient": 23,
+    "preparation": "",
+    "recipe": 4,
+    "recipe_section": null
+  }
+},
+{
+  "model": "recipe.ingredientquantity",
+  "pk": 24,
+  "fields": {
+    "measure": "2",
+    "unit": 3,
+    "ingredient": 19,
+    "preparation": "",
+    "recipe": 4,
+    "recipe_section": null
+  }
+},
+{
+  "model": "recipe.ingredientquantity",
+  "pk": 25,
+  "fields": {
+    "measure": "2",
+    "unit": 4,
+    "ingredient": 27,
+    "preparation": "",
+    "recipe": 4,
+    "recipe_section": null
+  }
+},
+{
+  "model": "recipe.ingredientquantity",
+  "pk": 26,
+  "fields": {
+    "measure": "2",
+    "unit": 4,
+    "ingredient": 26,
+    "preparation": "",
+    "recipe": 4,
+    "recipe_section": null
+  }
+},
+{
+  "model": "recipe.ingredientquantity",
+  "pk": 27,
+  "fields": {
+    "measure": "2",
+    "unit": 7,
+    "ingredient": 24,
+    "preparation": "crushed",
+    "recipe": 4,
+    "recipe_section": null
+  }
+},
+{
+  "model": "recipe.ingredientquantity",
+  "pk": 28,
+  "fields": {
+    "measure": "1/4",
+    "unit": 3,
+    "ingredient": 25,
+    "preparation": "",
+    "recipe": 4,
+    "recipe_section": null
+  }
+},
+{
+  "model": "recipe.ingredientquantity",
+  "pk": 29,
+  "fields": {
+    "measure": "2",
+    "unit": 4,
+    "ingredient": 28,
+    "preparation": "",
+    "recipe": 5,
+    "recipe_section": null
+  }
+},
+{
+  "model": "recipe.ingredientquantity",
+  "pk": 30,
+  "fields": {
+    "measure": "3",
+    "unit": 4,
+    "ingredient": 11,
+    "preparation": "",
+    "recipe": 5,
+    "recipe_section": null
+  }
+},
+{
+  "model": "recipe.ingredientquantity",
+  "pk": 31,
+  "fields": {
+    "measure": "1/2",
+    "unit": 1,
+    "ingredient": 4,
+    "preparation": "",
+    "recipe": 5,
+    "recipe_section": null
+  }
+},
+{
+  "model": "recipe.ingredientquantity",
+  "pk": 32,
+  "fields": {
+    "measure": "3/4",
+    "unit": 1,
+    "ingredient": 3,
+    "preparation": "",
+    "recipe": 5,
+    "recipe_section": null
+  }
+},
+{
+  "model": "recipe.ingredientquantity",
+  "pk": 33,
+  "fields": {
+    "measure": "1",
+    "unit": 3,
+    "ingredient": 29,
+    "preparation": "",
+    "recipe": 5,
+    "recipe_section": null
+  }
+},
+{
+  "model": "recipe.ingredientquantity",
+  "pk": 34,
+  "fields": {
+    "measure": "1.25",
+    "unit": 1,
+    "ingredient": 1,
+    "preparation": "",
+    "recipe": 5,
+    "recipe_section": null
+  }
+},
+{
+  "model": "recipe.ingredientquantity",
+  "pk": 35,
+  "fields": {
+    "measure": "1/2",
+    "unit": 3,
+    "ingredient": 30,
+    "preparation": "",
+    "recipe": 5,
+    "recipe_section": null
+  }
+},
+{
+  "model": "recipe.ingredientquantity",
+  "pk": 36,
+  "fields": {
+    "measure": "1/2",
+    "unit": 3,
+    "ingredient": 31,
+    "preparation": "",
+    "recipe": 5,
+    "recipe_section": null
+  }
+},
+{
+  "model": "recipe.ingredientquantity",
+  "pk": 37,
+  "fields": {
+    "measure": "1/4",
+    "unit": 3,
+    "ingredient": 5,
+    "preparation": "",
+    "recipe": 5,
+    "recipe_section": null
+  }
+},
+{
+  "model": "recipe.ingredientquantity",
+  "pk": 38,
+  "fields": {
+    "measure": "3/4",
+    "unit": 1,
+    "ingredient": 32,
+    "preparation": "",
+    "recipe": 5,
+    "recipe_section": null
+  }
+},
+{
+  "model": "recipe.ingredientquantity",
+  "pk": 39,
+  "fields": {
+    "measure": "1",
+    "unit": 1,
+    "ingredient": 33,
+    "preparation": "",
+    "recipe": 5,
+    "recipe_section": null
+  }
+},
+{
+  "model": "recipe.ingredientquantity",
+  "pk": 40,
+  "fields": {
+    "measure": "4",
+    "unit": null,
+    "ingredient": 34,
+    "preparation": "crushed",
+    "recipe": 5,
+    "recipe_section": null
+  }
+},
+{
+  "model": "recipe.ingredientquantity",
+  "pk": 41,
+  "fields": {
+    "measure": "2x15",
+    "unit": 8,
+    "ingredient": 35,
+    "preparation": "",
+    "recipe": 6,
+    "recipe_section": null
+  }
+},
+{
+  "model": "recipe.ingredientquantity",
+  "pk": 42,
+  "fields": {
+    "measure": "4",
+    "unit": 4,
+    "ingredient": 23,
+    "preparation": "",
+    "recipe": 6,
+    "recipe_section": null
+  }
+},
+{
+  "model": "recipe.ingredientquantity",
+  "pk": 43,
+  "fields": {
+    "measure": "1",
+    "unit": 9,
+    "ingredient": 36,
+    "preparation": "",
+    "recipe": 6,
+    "recipe_section": null
+  }
+},
+{
+  "model": "recipe.ingredientquantity",
+  "pk": 44,
+  "fields": {
+    "measure": "1/2",
+    "unit": null,
+    "ingredient": 37,
+    "preparation": "cooked and mashed",
+    "recipe": 6,
+    "recipe_section": null
+  }
+},
+{
+  "model": "recipe.ingredientquantity",
+  "pk": 45,
+  "fields": {
+    "measure": "3",
+    "unit": 7,
+    "ingredient": 24,
+    "preparation": "thinly sliced",
+    "recipe": 6,
+    "recipe_section": null
+  }
+},
+{
+  "model": "recipe.ingredientquantity",
+  "pk": 46,
+  "fields": {
+    "measure": "1/2",
+    "unit": 3,
+    "ingredient": 38,
+    "preparation": "",
+    "recipe": 6,
+    "recipe_section": null
+  }
+},
+{
+  "model": "recipe.ingredientquantity",
+  "pk": 47,
+  "fields": {
+    "measure": "1",
+    "unit": 10,
+    "ingredient": 25,
+    "preparation": "",
+    "recipe": 6,
+    "recipe_section": null
+  }
+},
+{
+  "model": "recipe.ingredientquantity",
+  "pk": 48,
+  "fields": {
+    "measure": "1",
+    "unit": 4,
+    "ingredient": 39,
+    "preparation": "",
+    "recipe": 6,
+    "recipe_section": null
+  }
+},
+{
+  "model": "recipe.ingredientquantity",
+  "pk": 49,
+  "fields": {
+    "measure": "1/2",
+    "unit": 3,
+    "ingredient": 40,
+    "preparation": "",
+    "recipe": 6,
+    "recipe_section": null
+  }
+},
+{
+  "model": "recipe.ingredientquantity",
+  "pk": 50,
+  "fields": {
+    "measure": "1",
+    "unit": null,
+    "ingredient": 43,
+    "preparation": "shredded",
+    "recipe": 7,
+    "recipe_section": null
+  }
+},
+{
+  "model": "recipe.ingredientquantity",
+  "pk": 51,
+  "fields": {
+    "measure": "2",
+    "unit": null,
+    "ingredient": 45,
+    "preparation": "juice",
+    "recipe": 7,
+    "recipe_section": null
+  }
+},
+{
+  "model": "recipe.ingredientquantity",
+  "pk": 52,
+  "fields": {
+    "measure": "1",
+    "unit": null,
+    "ingredient": 46,
+    "preparation": "diced",
+    "recipe": 7,
+    "recipe_section": null
+  }
+},
+{
+  "model": "recipe.ingredientquantity",
+  "pk": 53,
+  "fields": {
+    "measure": "1/2",
+    "unit": 1,
+    "ingredient": 35,
+    "preparation": "",
+    "recipe": 7,
+    "recipe_section": null
+  }
+},
+{
+  "model": "recipe.ingredientquantity",
+  "pk": 54,
+  "fields": {
+    "measure": "",
+    "unit": null,
+    "ingredient": 36,
+    "preparation": "",
+    "recipe": 7,
+    "recipe_section": null
+  }
+},
+{
+  "model": "recipe.ingredientquantity",
+  "pk": 55,
+  "fields": {
+    "measure": "1",
+    "unit": 11,
+    "ingredient": 47,
+    "preparation": "",
+    "recipe": 8,
+    "recipe_section": null
+  }
+},
+{
+  "model": "recipe.ingredientquantity",
+  "pk": 56,
+  "fields": {
+    "measure": "2",
+    "unit": null,
+    "ingredient": 44,
+    "preparation": "chopped",
+    "recipe": 8,
+    "recipe_section": null
+  }
+},
+{
+  "model": "recipe.ingredientquantity",
+  "pk": 57,
+  "fields": {
+    "measure": "1",
+    "unit": null,
+    "ingredient": 37,
+    "preparation": "chopped",
+    "recipe": 8,
+    "recipe_section": null
+  }
+},
+{
+  "model": "recipe.ingredientquantity",
+  "pk": 58,
+  "fields": {
+    "measure": "6",
+    "unit": 1,
+    "ingredient": 48,
+    "preparation": "",
+    "recipe": 8,
+    "recipe_section": null
+  }
+},
+{
+  "model": "recipe.ingredientquantity",
+  "pk": 59,
+  "fields": {
+    "measure": "1",
+    "unit": 1,
+    "ingredient": 49,
+    "preparation": "",
+    "recipe": 8,
+    "recipe_section": null
+  }
+},
+{
+  "model": "recipe.ingredientquantity",
+  "pk": 60,
+  "fields": {
+    "measure": "15",
+    "unit": 8,
+    "ingredient": 35,
+    "preparation": "",
+    "recipe": 8,
+    "recipe_section": null
+  }
+},
+{
+  "model": "recipe.ingredientquantity",
+  "pk": 61,
+  "fields": {
+    "measure": "6",
+    "unit": null,
+    "ingredient": 15,
+    "preparation": "tops cut off and saved",
+    "recipe": 9,
+    "recipe_section": null
+  }
+},
+{
+  "model": "recipe.ingredientquantity",
+  "pk": 62,
+  "fields": {
+    "measure": "1/2",
+    "unit": 1,
+    "ingredient": 16,
+    "preparation": "",
+    "recipe": 9,
+    "recipe_section": null
+  }
+},
+{
+  "model": "recipe.ingredientquantity",
+  "pk": 63,
+  "fields": {
+    "measure": "1/2",
+    "unit": 1,
+    "ingredient": 17,
+    "preparation": "",
+    "recipe": 9,
+    "recipe_section": null
+  }
+},
+{
+  "model": "recipe.ingredientquantity",
+  "pk": 64,
+  "fields": {
+    "measure": "1/4",
+    "unit": 1,
+    "ingredient": 20,
+    "preparation": "chopped",
+    "recipe": 9,
+    "recipe_section": null
+  }
+},
+{
+  "model": "recipe.ingredientquantity",
+  "pk": 65,
+  "fields": {
+    "measure": "1",
+    "unit": 3,
+    "ingredient": 8,
+    "preparation": "",
+    "recipe": 9,
+    "recipe_section": null
+  }
+},
+{
+  "model": "recipe.ingredientquantity",
+  "pk": 66,
+  "fields": {
+    "measure": "1",
+    "unit": 4,
+    "ingredient": 18,
+    "preparation": "",
+    "recipe": 9,
+    "recipe_section": null
+  }
+},
+{
+  "model": "recipe.ingredientquantity",
+  "pk": 67,
+  "fields": {
+    "measure": "1",
+    "unit": 4,
+    "ingredient": 19,
+    "preparation": "",
+    "recipe": 9,
+    "recipe_section": null
+  }
+}
+]

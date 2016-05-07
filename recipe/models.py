@@ -1,7 +1,9 @@
-from django.db                import models
-from django.core.urlresolvers import reverse
-from datetime                 import timedelta
-from veganizzm.utilities      import generate_slug
+from django.db                 import models
+from django.core.urlresolvers  import reverse
+from datetime                  import timedelta
+from veganizzm.utilities       import generate_slug
+from django_summernote.widgets import SummernoteWidget
+from taggit.managers           import TaggableManager
 
 # == `Recipe` ==
 class Recipe(models.Model):
@@ -21,8 +23,14 @@ class Recipe(models.Model):
     cooking_time = models.DurationField(default=timedelta())
     total_time   = models.DurationField(default=timedelta())
 
+    # `RecipeEquipment` needed for this `Recipe`.
+    recipe_equipment = models.ManyToManyField('RecipeEquipment')
+
     # Link to source of the recipe, if applicable.
     web_reference = models.URLField(null=True, blank=True)
+
+    # Indexable tags.
+    tags = TaggableManager(blank=True)
 
     # Override the `save` function to auto generate the `slug` field.
     def save(self, *args, **kwargs):
@@ -94,9 +102,9 @@ class RecipeStep(models.Model):
     class Meta:
         default_related_name = 'recipe_step_set'
 
-    recipe = models.ForeignKey(Recipe)
-    number = models.PositiveSmallIntegerField()
-    description = models.TextField()
+    recipe  = models.ForeignKey(Recipe)
+    number  = models.PositiveSmallIntegerField()
+    content = models.TextField()
 
 # == `RecipeSection` ==
 class RecipeSection(models.Model):
@@ -107,7 +115,7 @@ class RecipeSection(models.Model):
     class Meta:
         ordering = ['title']
 
-    title  = models.CharField(max_length=255, unique=True)
+    title = models.CharField(max_length=255, unique=True)
     recipe = models.ForeignKey(Recipe)
 
     def __str__(self):
@@ -121,33 +129,14 @@ class RecipeEquipment(models.Model):
         ordering = ['name']
         verbose_name_plural = 'recipe equipment'
 
-    name   = models.CharField(max_length=255, unique=True)
-    recipe = models.ForeignKey(Recipe)
-
+    name = models.CharField(max_length=255, unique=True)
+   
     # External link to an example.
     web_reference = models.URLField(null=True, blank=True)
 
     def save(self):
         self.name = self.name.lower()
         super(RecipeEquipment, self).save()
-
-    def __str__(self):
-        return self.name
-
-# == `RecipeTag`
-class RecipeTag(models.Model):
-    # Model used for indexing a `Recipe`.
-    
-    class Meta:
-        ordering = ['name']
-
-    name = models.CharField(max_length=255, unique=True)
-
-    # While the name is lower cased, django provides an easy way to uper case it
-    # on the template: {{ "obj.name"|title }}.
-    def save(self):
-        self.name = self.name.lower()
-        super(RecipeTag, self).save()
 
     def __str__(self):
         return self.name
@@ -164,7 +153,7 @@ class IngredientQuantity(models.Model):
     # `measure` is the amount (in base units of `physical_unit`) of `ingredient`.
     # It is a `CharField` to allow for fractions, and range quantities (e.g. 2-3)
     # 'unit' should reference a 'Unit', so we can convert, if needed.
-    measure  = models.CharField(max_length=10, null=True, blank=True)
+    measure = models.CharField(max_length=10, null=True, blank=True)
     unit = models.ForeignKey(Unit, null=True, blank=True)
 
     # `ingredient` is the `Ingredient` measured; `preparation`
