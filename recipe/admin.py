@@ -3,6 +3,7 @@ from django.conf    import settings
 from django.forms   import TextInput
 from django         import forms
 from recipe.models  import *
+from django_summernote.widgets import SummernoteWidget
 
 # Admin configuration for the `recipe` application. 
 # Only `Unit`, `Ingredient`, `RecipeEquipment`, and `Recipe`
@@ -42,6 +43,12 @@ class AdminInlineRecipeSection(admin.TabularInline):
     extra = 0
     model = RecipeSection
 
+class AdminInlineRecipeEquipment(admin.TabularInline):
+    extra = 0
+    model = Recipe.recipe_equipment.through
+    model._meta.verbose_name_plural = "recipe equipment"
+    model._meta.verbose_name = "equipment item"
+
 class AdminInlineIngredientQuantity(admin.TabularInline):
     extra = 0
     model = IngredientQuantity
@@ -73,10 +80,11 @@ class AdminRecipeEquipment(admin.ModelAdmin):
 class AdminRecipe(admin.ModelAdmin):
     inlines = [
         AdminInlineRecipeSection,
+        AdminInlineRecipeEquipment,
         AdminInlineIngredientQuantity,
         AdminInlineRecipeStep,
     ]
-    filter_horizontal = ('recipe_equipment',)
+    exclude = ['recipe_equipment',]
     form = AdminRecipeForm
 
 
