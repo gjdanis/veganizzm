@@ -1,8 +1,9 @@
-from django.contrib import admin
-from django         import forms
-from blog.models    import Post
-from django.forms   import TextInput
-from django_summernote.widgets import SummernoteWidget
+from django.contrib        import admin
+from django                import forms
+from blog.models           import Post
+from django.forms          import TextInput
+from redactor.widgets      import RedactorEditor
+from taggit_labels.widgets import LabelWidget
 
 # Admin configuration for the `blog` application. 
 # `Post` is the only editable model on admin.
@@ -14,7 +15,8 @@ class AdminPostForm(forms.ModelForm):
         model  = Post
         fields = '__all__'
         widgets = {
-            'content': SummernoteWidget(attrs={'width': '100%'}),
+            'content': RedactorEditor(),
+            'tags': LabelWidget()
         }
     pass
 

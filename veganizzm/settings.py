@@ -35,10 +35,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # `pip3 install django_summernote`
-    'django_summernote',
+    # `pip3 install django-wysiwyg-redactor`
+    'redactor',
     # `pip3 install django-taggit`
     'taggit',
+    # `pip3 install django-taggit-labels`
+    'taggit_labels',
     'blog.apps.BlogConfig',
     'recipe.apps.RecipeConfig',
 ]
@@ -138,3 +140,7 @@ FIXTURE_DIRS = (os.path.join(os.path.join(BASE_DIR, 'veganizzm'), 'fixtures'),)
 MEDIA_ROOT = os.path.join(os.path.dirname(__file__), 'media',)
 MEDIA_URL  = '/media/'
 
+ALLOWED_HOSTS = ['gjdanis.pythonanywhere.com']
+
+REDACTOR_OPTIONS = {'lang': 'en'}
+REDACTOR_UPLOAD = 'uploads/'

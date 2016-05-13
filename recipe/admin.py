@@ -1,9 +1,10 @@
-from django.contrib import admin
-from django.conf    import settings
-from django.forms   import TextInput
-from django         import forms
-from recipe.models  import *
-from django_summernote.widgets import SummernoteWidget
+from django.contrib        import admin
+from django.conf           import settings
+from django.forms          import TextInput
+from django                import forms
+from recipe.models         import *
+from redactor.widgets      import RedactorEditor
+from taggit_labels.widgets import LabelWidget
 
 # Admin configuration for the `recipe` application. 
 # Only `Unit`, `Ingredient`, `RecipeEquipment`, and `Recipe`
@@ -25,7 +26,7 @@ class AdminInlineRecipeStepForm(forms.ModelForm):
         model   = RecipeStep
         fields  = '__all__'
         widgets = {
-            'content': SummernoteWidget(attrs={'width': '600px', 'height': '250px'}),
+            'content': RedactorEditor(),
         }
     pass
 
@@ -35,7 +36,7 @@ class AdminRecipeForm(forms.ModelForm):
         model   = Recipe
         fields  = '__all__'
         widgets = {
-            'description': SummernoteWidget(attrs={'width': '600px', 'height': '250px'}),
+            'tags': LabelWidget()
         }
     pass
 

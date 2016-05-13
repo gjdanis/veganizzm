@@ -1,8 +1,9 @@
-# databases, migrations, media, and compiled documentation
+# databases, migrations, media, compiled documentation, and backups
 *.sqlite3
 migrations/
 media/
 docs/
+backups/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

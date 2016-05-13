@@ -31,7 +31,7 @@ import blog.views
 import recipe.views
 
 urlpatterns = [
-    url(r'^summernote/', include('django_summernote.urls')),
+    url(r'^redactor/', include('redactor.urls')),
     url(r'^$', blog.views.home_view),
     url(r'^admin/', admin.site.urls),
     url(r'^posts/(?P<slug>[-\w\d\_]+)/$', blog.views.post_view, name='post_view'),

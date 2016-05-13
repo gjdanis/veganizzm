@@ -1,6 +1,5 @@
 from django.db                 import models
 from django.core.urlresolvers  import reverse
-from datetime                  import timedelta
 from veganizzm.utilities       import generate_slug
 from django_summernote.widgets import SummernoteWidget
 from taggit.managers           import TaggableManager
@@ -16,18 +15,17 @@ class Recipe(models.Model):
     makes = models.PositiveSmallIntegerField(null=True, blank=True)
 
     # Optional preceding text for a `Recipe`.
-    description = models.TextField(null=True, blank=True)
+    blurb = models.CharField(max_length=500, null=True, blank=True)
 
     # How long it takes to make this `Recipe`.
-    prep_time    = models.DurationField(default=timedelta())
-    cooking_time = models.DurationField(default=timedelta())
-    total_time   = models.DurationField(default=timedelta())
+    prep_time    = models.DurationField(null=True, blank=True, help_text="An hh:mm:ss duration.")
+    cooking_time = models.DurationField(null=True, blank=True, help_text="An hh:mm:ss duration.")
 
     # `RecipeEquipment` needed for this `Recipe`.
     recipe_equipment = models.ManyToManyField('RecipeEquipment')
 
     # Link to source of the recipe, if applicable.
-    web_reference = models.URLField(null=True, blank=True)
+    web_reference = models.URLField(null=True, blank=True, help_text="Web URL for citation purposes.")
 
     # Indexable tags.
     tags = TaggableManager(blank=True)
@@ -132,7 +130,7 @@ class RecipeEquipment(models.Model):
     name = models.CharField(max_length=255, unique=True)
    
     # External link to an example.
-    web_reference = models.URLField(null=True, blank=True)
+    web_reference = models.URLField(null=True, blank=True, help_text="Web URL for citation purposes.")
 
     def save(self):
         self.name = self.name.lower()
