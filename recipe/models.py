@@ -1,8 +1,7 @@
-from django.db                 import models
-from django.core.urlresolvers  import reverse
-from veganizzm.utilities       import generate_slug
-from django_summernote.widgets import SummernoteWidget
-from taggit.managers           import TaggableManager
+from django.db                import models
+from django.core.urlresolvers import reverse
+from veganizzm.utilities      import generate_slug
+from taggit.managers          import TaggableManager
 
 # == `Recipe` ==
 class Recipe(models.Model):
@@ -100,9 +99,9 @@ class RecipeStep(models.Model):
     class Meta:
         default_related_name = 'recipe_step_set'
 
-    recipe  = models.ForeignKey(Recipe)
-    number  = models.PositiveSmallIntegerField()
+    number  = models.PositiveSmallIntegerField(null=True, blank=True)
     content = models.TextField()
+    recipe  = models.ForeignKey(Recipe)
 
 # == `RecipeSection` ==
 class RecipeSection(models.Model):

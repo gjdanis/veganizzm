@@ -29,9 +29,10 @@ def sqlite3_backup():
     connection.close()
 
 def clean():
+    now = time.time()
     for filename in os.listdir(BACKUP_DIR):
         backup_file = os.path.join(BACKUP_DIR, filename)
-        if os.stat(backup_file).st_ctime < (time.time() - NO_OF_DAYS * 86400):
+        if os.stat(backup_file).st_ctime < (now - NO_OF_DAYS * 86400):
             if os.path.isfile(backup_file):
                 os.remove(backup_file)
 
