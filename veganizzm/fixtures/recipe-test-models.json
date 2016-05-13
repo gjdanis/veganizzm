@@ -6,10 +6,10 @@
     "title": "Glazed Cinnamon Buns",
     "slug": "glazed-cinnamon-buns",
     "makes": 16,
-    "description": "",
+    "blurb": "",
     "prep_time": "00:00:00",
     "cooking_time": "00:00:00",
-    "total_time": "00:00:00",
+    
     "web_reference": "",
     "recipe_equipment": []
   }
@@ -21,10 +21,10 @@
     "title": "Maple-Glazed Grilled Tempeh",
     "slug": "maple-glazed-grilled-tempeh-1",
     "makes": null,
-    "description": "",
+    "blurb": "",
     "prep_time": "00:00:00",
     "cooking_time": "00:00:00",
-    "total_time": "00:00:00",
+    
     "web_reference": null,
     "recipe_equipment": []
   }
@@ -36,10 +36,10 @@
     "title": "Vegan Chocolate Chip S'more Cookies",
     "slug": "vegan-chocolate-chip-smore-cookies-1",
     "makes": null,
-    "description": "",
+    "blurb": "",
     "prep_time": "00:00:00",
     "cooking_time": "00:00:00",
-    "total_time": "00:00:00",
+    
     "web_reference": null,
     "recipe_equipment": []
   }
@@ -51,10 +51,10 @@
     "title": "Espinacas con Garbanzos",
     "slug": "espinacas-con-garbanzos-1",
     "makes": 4,
-    "description": "",
+    "blurb": "",
     "prep_time": "00:00:00",
     "cooking_time": "00:00:00",
-    "total_time": "00:00:00",
+    
     "web_reference": "",
     "recipe_equipment": []
   }
@@ -66,10 +66,10 @@
     "title": "Lime-Marinated Golden Beet, Avocado, Chickpea Salad",
     "slug": "lime-marinated-golden-beet-avocado-chickpea-salad-1",
     "makes": null,
-    "description": "",
+    "blurb": "",
     "prep_time": "00:00:00",
     "cooking_time": "00:00:00",
-    "total_time": "00:00:00",
+    
     "web_reference": "",
     "recipe_equipment": []
   }
@@ -81,10 +81,10 @@
     "title": "Sweet Potato, Carrot, Chickpea, Mushroom, Broccoli Soup",
     "slug": "sweet-potato-carrot-chickpea-mushroom-broccoli-soup",
     "makes": null,
-    "description": "",
+    "blurb": "",
     "prep_time": "00:00:00",
     "cooking_time": "00:00:00",
-    "total_time": "00:00:00",
+    
     "web_reference": "",
     "recipe_equipment": []
   }
@@ -96,10 +96,10 @@
     "title": "Peanut Butter Cinnamon Baked Apples",
     "slug": "peanut-butter-cinnamon-baked-apples",
     "makes": null,
-    "description": "",
+    "blurb": "",
     "prep_time": "00:00:00",
     "cooking_time": "00:00:00",
-    "total_time": "00:00:00",
+    
     "web_reference": "",
     "recipe_equipment": [
       1

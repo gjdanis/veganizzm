@@ -12,7 +12,7 @@ import os
 
 NO_OF_DAYS = 15 # keep data for 15 days
 DB_FILE    = "db.sqlite3"
-BACKUP_DIR = "/home/gjdanis/veganizzm/veganizzm/backups"
+BACKUP_DIR = "veganizzm/backups"
 
 def sqlite3_backup():
     parts = os.path.splitext(DB_FILE)
