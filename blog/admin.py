@@ -23,7 +23,8 @@ class AdminPostForm(forms.ModelForm):
 @admin.register(Post)
 class AdminPost(admin.ModelAdmin):
     # The `slug` should be auto generated from the backend.
-    list_display = ('title', 'author')
+    list_display  = ['title', 'author']
+    search_fields = ['title']
     form = AdminPostForm
     
     # Saves a `Post` and by default assigns the currently

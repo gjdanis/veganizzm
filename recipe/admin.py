@@ -40,10 +40,6 @@ class AdminRecipeForm(forms.ModelForm):
         }
     pass
 
-class AdminInlineRecipeSection(admin.TabularInline):
-    extra = 0
-    model = RecipeSection
-
 class AdminInlineRecipeEquipment(admin.TabularInline):
     extra = 0
     model = Recipe.recipe_equipment.through
@@ -80,12 +76,13 @@ class AdminRecipeEquipment(admin.ModelAdmin):
 @admin.register(Recipe)
 class AdminRecipe(admin.ModelAdmin):
     inlines = [
-        AdminInlineRecipeSection,
         AdminInlineRecipeEquipment,
         AdminInlineIngredientQuantity,
         AdminInlineRecipeStep,
     ]
     exclude = ['recipe_equipment',]
     form = AdminRecipeForm
+    filter_horizontal = ['child_recipes',]
+    search_fields = ['title']
 
 

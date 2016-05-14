@@ -1,4 +1,4 @@
-from recipe.models import Ingredient, IngredientQuantity, RecipeStep, Recipe, RecipeEquipment
+from recipe.models import Ingredient, IngredientQuantity, Recipe, RecipeEquipment
 from django.test   import TestCase
 from django.db.models.deletion import ProtectedError
 
@@ -36,23 +36,6 @@ class TestIngredientQuantity(TestCase):
         ingredient = Ingredient.objects.get(name="water")
         self.assertIsNotNone(ingredient, "Expect deleting 'ingredient_quantities' to not delete 'ingredient'")
 
-class TestRecipeStep(TestCase):
-    fixtures = ['recipe-test-models.json']
-
-    def test_delete_recipe_step(self):
-        recipe_steps = RecipeStep.objects.filter(recipe__title="Glazed Cinnamon Buns")
-        for recipe_step in recipe_steps:
-            recipe_step.delete()
-
-        recipe = Recipe.objects.get(title="Glazed Cinnamon Buns")
-        self.assertIsNotNone(recipe, "Expect deleting 'recipe_steps' to not delete 'recipe'")
-
-        ingredient_quantities = IngredientQuantity.objects.filter(recipe__title="Glazed Cinnamon Buns")
-        self.assertTrue(
-            len(ingredient_quantities) > 0,
-            "Expect deleting 'recipe_steps' to not delete 'ingredient_quantities"
-        )
-
 class RecipeTests(TestCase):
     fixtures = ['recipe-test-models.json']
 
@@ -72,10 +55,25 @@ class RecipeTests(TestCase):
             "Expect deleting 'recipe' to delete 'ingredient_quantities'"
         )
 
-        recipe_steps = RecipeStep.objects.filter(recipe__title="Peanut Butter Cinnamon Baked Apples")
-        self.assertTrue(
-            len(ingredient_quantities) == 0,
-            "Expect deleting 'recipe' to delete 'recipe_steps'"
+    def test_delete_recipe_with_children(self):
+        recipe = Recipe.objects.get(title="Glazed Cinnamon Buns")
+        recipe.delete()
+
+        error = "Expect deleting 'recipe' to leave 'child_recipes' unchanged"
+        self.assertIsNotNone(
+            Recipe.objects.get(title='Cinnamon Buns'),
+            error
         )
 
+        self.assertIsNotNone(
+            Recipe.objects.get(title='Cinnamon-Sugar Filling'),
+            error
+        )
+
+        self.assertIsNotNone(
+            Recipe.objects.get(title='Icing'),
+            error
+        )
+
+        
 

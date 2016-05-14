@@ -29,6 +29,14 @@ class Recipe(models.Model):
     # Indexable tags.
     tags = TaggableManager(blank=True)
 
+    # A recipe may be divided into sections. Each section should be modeled as 
+    # another `Recipe` belonging to this `Recipe`.
+    child_recipes = models.ManyToManyField(
+        'self',
+        help_text="Use if this recipe has multiple sub-recipes.",
+        blank=True
+    )
+
     # Override the `save` function to auto generate the `slug` field.
     def save(self, *args, **kwargs):
         self.slug = generate_slug(Recipe, self.title)
@@ -103,21 +111,6 @@ class RecipeStep(models.Model):
     content = models.TextField()
     recipe  = models.ForeignKey(Recipe)
 
-# == `RecipeSection` ==
-class RecipeSection(models.Model):
-    # Used to model the subsections within a `Recipe`
-    # For example, if the `Recipe` is Cinnamon Buns, but we want to model
-    # the Icing component of the Cinnamon Buns `Recipe`
-    
-    class Meta:
-        ordering = ['title']
-
-    title = models.CharField(max_length=255, unique=True)
-    recipe = models.ForeignKey(Recipe)
-
-    def __str__(self):
-        return self.title
-
 # == `RecipeEquipment` ==
 class RecipeEquipment(models.Model):
     # Used to model equipment used in a `Recipe`.
@@ -162,15 +155,6 @@ class IngredientQuantity(models.Model):
     # Expect deleting a `Recipe` to delete all associated `IngredientQuantity`
     # objects but leave the `Ingredient` objects untouched.
     recipe = models.ForeignKey(Recipe)
-
-    # A recipe may be divided into sections. Each section associates with 
-    # some `IngredientQuantity`
-    recipe_section = models.ForeignKey(
-        RecipeSection,
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL
-    )
 
     def __str__(self):
         return "{0} {1} {2} {3}".format(
