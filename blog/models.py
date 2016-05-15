@@ -18,9 +18,8 @@ class Post(models.Model):
     date_created = models.DateTimeField(auto_now_add=True)
     published    = models.BooleanField(default=True)
 
-    # Every `Post` need not reference a `Recipe`;
-    # we don't want to delete `Recipes` if an active blog `Post` is deleted.
-    recipe = models.OneToOneField(Recipe, null=True, blank=True, on_delete=models.PROTECT)
+    # Every `Post` may reference zero or more `Recipe`s.
+    recipes = models.ManyToManyField(Recipe, blank=True)
     
     # Indexable tags.
     tags = TaggableManager(blank=True)

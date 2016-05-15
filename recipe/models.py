@@ -31,7 +31,7 @@ class Recipe(models.Model):
 
     # A recipe may be divided into sections. Each section should be modeled as 
     # another `Recipe` belonging to this `Recipe`.
-    child_recipes = models.ManyToManyField(
+    related_recipes = models.ManyToManyField(
         'self',
         help_text="Use if this recipe has multiple sub-recipes.",
         blank=True

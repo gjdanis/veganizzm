@@ -75,14 +75,15 @@ class AdminRecipeEquipment(admin.ModelAdmin):
 
 @admin.register(Recipe)
 class AdminRecipe(admin.ModelAdmin):
+    filter_horizontal = ['related_recipes',]
     inlines = [
         AdminInlineRecipeEquipment,
         AdminInlineIngredientQuantity,
         AdminInlineRecipeStep,
     ]
     exclude = ['recipe_equipment',]
-    form = AdminRecipeForm
-    filter_horizontal = ['child_recipes',]
     search_fields = ['title']
+    list_per_page = 25
+    form = AdminRecipeForm
 
 

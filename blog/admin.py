@@ -23,10 +23,12 @@ class AdminPostForm(forms.ModelForm):
 @admin.register(Post)
 class AdminPost(admin.ModelAdmin):
     # The `slug` should be auto generated from the backend.
+    filter_horizontal = ['recipes',]
     list_display  = ['title', 'author']
     search_fields = ['title']
+    list_per_page = 25
     form = AdminPostForm
-    
+
     # Saves a `Post` and by default assigns the currently
     # logged in user as the `author`.
     def save_model(self, request, obj, form, change):
