@@ -65,13 +65,15 @@ class AdminUnit(admin.ModelAdmin):
         'system',
     ]
 
+    list_per_page = 25
+
 @admin.register(Ingredient)
 class AdminIngredient(admin.ModelAdmin):
-    pass
+    list_per_page = 25
 
 @admin.register(RecipeEquipment)
 class AdminRecipeEquipment(admin.ModelAdmin):
-    pass
+    list_per_page = 25
 
 @admin.register(Recipe)
 class AdminRecipe(admin.ModelAdmin):
