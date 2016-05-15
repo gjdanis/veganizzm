@@ -1,4 +1,4 @@
-from recipe.models import Ingredient, IngredientQuantity, Recipe, RecipeEquipment
+from recipe.models import Ingredient, IngredientQuantity, Recipe, RecipeEquipment, Unit
 from django.test   import TestCase
 from django.db.models.deletion import ProtectedError
 
@@ -75,5 +75,22 @@ class RecipeTests(TestCase):
             error
         )
 
+class UnitTests(TestCase):
+    fixtures = ['recipe-test-models.json']
+
+    def test_delete_unit(self):
+        unit = Unit.objects.get(short_name='C')
+        ingredient_quantities = IngredientQuantity.objects.filter(unit__short_name='C')
+        starting_count = len(ingredient_quantities)
+        unit.delete()
+        ingredient_quantities = IngredientQuantity.objects.filter(
+            pk__in=[obj.pk for obj in ingredient_quantities]
+        )
+
+        self.assertTrue(
+            len(ingredient_quantities) == starting_count and 
+            all(obj.unit is None for obj in ingredient_quantities),
+            "Expect deleteing 'unit' to leave 'ingredient_quantities' using 'unit' unchanged"
+        )
         
 

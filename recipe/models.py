@@ -144,7 +144,7 @@ class IngredientQuantity(models.Model):
     # It is a `CharField` to allow for fractions, and range quantities (e.g. 2-3)
     # 'unit' should reference a 'Unit', so we can convert, if needed.
     measure = models.CharField(max_length=10, null=True, blank=True)
-    unit = models.ForeignKey(Unit, null=True, blank=True)
+    unit = models.ForeignKey(Unit, on_delete=models.SET_NULL, null=True, blank=True)
 
     # `ingredient` is the `Ingredient` measured; `preparation`
     # should indicate how it's prepared (e.g. chopped).
