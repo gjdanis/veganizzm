@@ -77,7 +77,6 @@ class AdminRecipeEquipment(admin.ModelAdmin):
 
 @admin.register(Recipe)
 class AdminRecipe(admin.ModelAdmin):
-    filter_horizontal = ['related_recipes',]
     inlines = [
         AdminInlineRecipeEquipment,
         AdminInlineIngredientQuantity,

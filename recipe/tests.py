@@ -40,12 +40,12 @@ class RecipeTests(TestCase):
     fixtures = ['recipe-test-models.json']
 
     def test_delete_recipe(self):
-        recipe_equipment = RecipeEquipment.objects.get(name='aluminum foil')
+        recipe_equipment = RecipeEquipment.objects.get(name="aluminum foil")
         recipe = Recipe.objects.get(title="Peanut Butter Cinnamon Baked Apples")
         recipe.delete()
 
         self.assertIsNotNone(
-            RecipeEquipment.objects.get(name='aluminum foil'),
+            RecipeEquipment.objects.get(name="aluminum foil"),
             "Expect deleting 'recipe' to leave 'recipe_equipment' unchanged"
         )
 
@@ -59,19 +59,19 @@ class RecipeTests(TestCase):
         recipe = Recipe.objects.get(title="Glazed Cinnamon Buns")
         recipe.delete()
 
-        error = "Expect deleting 'recipe' to leave 'child_recipes' unchanged"
+        error = "Expect deleting 'recipe' to leave child recipes unchanged"
         self.assertIsNotNone(
-            Recipe.objects.get(title='Cinnamon Buns'),
+            Recipe.objects.get(title="Cinnamon Buns"),
             error
         )
 
         self.assertIsNotNone(
-            Recipe.objects.get(title='Cinnamon-Sugar Filling'),
+            Recipe.objects.get(title="Cinnamon-Sugar Filling"),
             error
         )
 
         self.assertIsNotNone(
-            Recipe.objects.get(title='Icing'),
+            Recipe.objects.get(title="Icing"),
             error
         )
 

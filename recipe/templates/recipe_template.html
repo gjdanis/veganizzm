@@ -1,0 +1,17 @@
+<h1>{{ recipe.title }}</h1>
+
+<ul>
+{% for obj in ingredient_quantities %}
+  <li>{% include "ingredient_quantity_template.html" with ingredient_quantity=obj %}</li>
+{% endfor %}
+</ul>
+
+{% for obj in unordered_steps %}
+  {% include "recipe_step_template.html" with recipe_step=obj %}
+{% endfor %}
+
+<ol>
+  {% for obj in ordered_recipe_steps %}
+    <li>{% include "recipe_step_template.html" with recipe_step=obj %}</li>
+  {% endfor %}
+</ol>

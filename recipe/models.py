@@ -8,7 +8,7 @@ class Recipe(models.Model):
     # A `Recipe` is a list of recipe steps. It doesn't actually 
     # contain any `RecipeStep` objects. Instead, each `RecipeStep`
     # has a foreign key to a `Recipe`.
-
+    
     title = models.CharField(max_length=255)
     slug  = models.SlugField(max_length=100, unique=True, editable=False)
     makes = models.PositiveSmallIntegerField(null=True, blank=True)
@@ -30,11 +30,13 @@ class Recipe(models.Model):
     tags = TaggableManager(blank=True)
 
     # A recipe may be divided into sections. Each section should be modeled as 
-    # another `Recipe` belonging to this `Recipe`.
-    related_recipes = models.ManyToManyField(
+    # another `Recipe` belonging a parent `Recipe`.
+    parent_recipe = models.ForeignKey(
         'self',
+        on_delete=models.SET_NULL,
         help_text="Use if this recipe has multiple sub-recipes.",
-        blank=True
+        blank=True,
+        null=True,
     )
 
     # Override the `save` function to auto generate the `slug` field.
