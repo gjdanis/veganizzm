@@ -7,16 +7,5 @@ def recipe_view(request, slug):
     # be a good idea to restrict this view to staff.
 
     recipe = get_object_or_404(Recipe, slug=slug)
-    data = {
-        'recipe': recipe,
-        'ingredient_quantities': recipe.ingredient_quantity_set.all(),
-        'unordered_steps': [
-            recipe_step for recipe_step in recipe.recipe_step_set.all() 
-                        if  recipe_step.number is None
-        ],
-        'ordered_recipe_steps': [
-            recipe_step for recipe_step in recipe.recipe_step_set.all() 
-                        if  recipe_step.number is not None
-        ]
-    }
+    data = {'recipe': recipe, 'number_steps': len(recipe.recipe_step_set.all()) > 1}
     return render(request, 'recipe_template.html', data)

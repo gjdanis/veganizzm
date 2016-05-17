@@ -1,17 +1,28 @@
-<h1>{{ recipe.title }}</h1>
+<style>
+  ol {
+    /* TODO: remove this; figure out how to set div indentation recursively */
+    padding-left: 20px;
+  }​
+</style>
+
+{% if recipe.parent_recipe == None %}
+  <h1>{{ recipe.title }}</h1>
+{% else %}
+  <h2>{{ recipe.title }}</h2>
+{% endif %}
+
+{% for obj in recipe.recipe_set.all %}
+  {% include "recipe_template.html" with recipe=obj %}
+{% endfor %}
 
 <ul>
-{% for obj in ingredient_quantities %}
-  <li>{% include "ingredient_quantity_template.html" with ingredient_quantity=obj %}</li>
-{% endfor %}
+  {% for obj in recipe.ingredient_quantity_set.all %}
+    <li>{% include "ingredient_quantity_template.html" with ingredient_quantity=obj %}</li>
+  {% endfor %}
 </ul>
 
-{% for obj in unordered_steps %}
-  {% include "recipe_step_template.html" with recipe_step=obj %}
-{% endfor %}
-
 <ol>
-  {% for obj in ordered_recipe_steps %}
+  {% for obj in recipe.recipe_step_set.all %}
     <li>{% include "recipe_step_template.html" with recipe_step=obj %}</li>
   {% endfor %}
 </ol>

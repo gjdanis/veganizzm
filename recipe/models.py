@@ -9,6 +9,9 @@ class Recipe(models.Model):
     # contain any `RecipeStep` objects. Instead, each `RecipeStep`
     # has a foreign key to a `Recipe`.
     
+    class Meta:
+        default_related_name = 'recipe_set'
+
     title = models.CharField(max_length=255)
     slug  = models.SlugField(max_length=100, unique=True, editable=False)
     makes = models.PositiveSmallIntegerField(null=True, blank=True)
