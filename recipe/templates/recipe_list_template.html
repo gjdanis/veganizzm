@@ -1,0 +1,8 @@
+<h1>Recipes</h1>
+<ul>
+{% for recipe in object_list %}
+  <li>
+    <a href="/recipes/{{ recipe.slug }}">{{ recipe.title }}</a>
+  </li>
+{% endfor %}
+</ul>

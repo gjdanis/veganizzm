@@ -1,47 +1,68 @@
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
+
 <style>
   .recipe_container {
-    font: 14px "Helvetica Neue",Helvetica,Arial,sans-serif;
-    padding: 10px;
+    margin: 10px;
   }
 
-  .recipe_header {
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 15px;
+  .recipe_iq_section {
+    background-color: #f5f5f5;
   }
 
-  .recipe_section_header {
+  .recipe_iq_section {
+    padding-bottom: 10px;
+    padding-top: 10px;
+  }
+
+  .recipe_step_list {
+    padding-left: 15px;
+  }
+
+  .recipe_content_container {
+    color: #555;
     font-size: 14px;
-    font-weight: bold;
-    margin-top: 3px;
+    font-weight: 400;
   }
 
-  .recipe_step {
-    margin-left: -10px;
+  .recipe_iq_checkboxes {
+    padding-left: 10px; 
   }
 
+  .strikethrough_checkbox:checked + span{
+    text-decoration: line-through
+  }
 </style>
 
-<div class= {% if recipe.parent_recipe == None %}"recipe_container"{% endif %}>
-  {% if recipe.parent_recipe == None %}
-    <div class="recipe_header">{{ recipe.title }}</div>
-  {% else %}
-    <div class="recipe_section_header">{{ recipe.title }}</div>
-  {% endif %}
+<!-- http://themeforest.net/item/bakery-responsive-recipes-html-template/full_screen_preview/15562268
+ -->
+<!-- maybe move images to a slider rather than inline with the text?? -->
 
-  {% for obj in recipe.recipe_set.all %}
-    {% include "recipe_template.html" with recipe=obj %}
-  {% endfor %}
-
-  <ul class="recipe_ingredient">
-    {% for obj in recipe.ingredient_quantity_set.all %}
-      <li>{% include "ingredient_quantity_template.html" with ingredient_quantity=obj %}</li>
-    {% endfor %}
-  </ul>
-
-  <ol class="recipe_step">
-    {% for obj in recipe.recipe_step_set.all %}
-      <li>{% include "recipe_step_template.html" with recipe_step=obj %}</li>
-    {% endfor %}
-  </ol>
+<div class="container-fluid recipe_container">
+  <h1>{{ recipe.title }}</h1>
+  <div class="row recipe_content_container">
+    <div class="col-sm-5 recipe_iq_section">
+      <h4>Ingredients</h4>
+      <div class="recipe_iq_checkboxes">
+        {% for obj in recipe.ingredient_quantity_set.all %}
+          {% include "ingredient_quantity_template.html" with ingredient_quantity=obj %}
+        {% endfor %}
+      </div>
+    </div>
+    <div class="col-sm-7 recipe_step_section">
+      <h4>Preparation</h4>
+      <ol class="recipe_step_list">
+        {% for obj in recipe.recipe_step_set.all %}
+          <li>{% include "recipe_step_template.html" with recipe_step=obj %}</li>
+        {% endfor %}
+      <ol>
+    </div>
+  </div>
 </div>
+

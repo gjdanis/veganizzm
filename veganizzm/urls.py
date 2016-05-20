@@ -28,15 +28,16 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.views.generic import TemplateView
 
-from recipe.views import RecipeView
-from blog.views   import PostView
+from recipe.views import RecipeDetailView, RecipeListView
+from blog.views import PostView
 
 urlpatterns = [
     url(r'^redactor/', include('redactor.urls')),
     url(r'^$', TemplateView.as_view(template_name='index.html')),
     url(r'^admin/', admin.site.urls),
     url(r'^posts/(?P<slug>[-\w\d\_]+)/$', PostView.as_view(), name='post_view'),
-    url(r'^recipes/(?P<slug>[-\w\d\_]+)/$', RecipeView.as_view(), name='recipe_view'),
+    url(r'^recipes/list/', RecipeListView.as_view()),
+    url(r'^recipes/(?P<slug>[-\w\d\_]+)/$', RecipeDetailView.as_view(), name='recipe_view')
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

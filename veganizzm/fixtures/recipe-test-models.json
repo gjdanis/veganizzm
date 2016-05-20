@@ -516,7 +516,7 @@
   "pk": 1,
   "fields": {
     "long_name": "cup",
-    "short_name": "c",
+    "short_name": "C",
     "physical_unit": 2,
     "system": 2
   }

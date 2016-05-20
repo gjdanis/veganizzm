@@ -1,5 +1,12 @@
 {% load recipe_tags %}
 
-{{ ingredient_quantity.measure|formatted_measure }}
-{{ ingredient_quantity.unit.long_name }}
-{{ ingredient_quantity.ingredient }}
+<div class="checkbox">
+  <label>
+  <input class="strikethrough_checkbox" type="checkbox" value="">
+    <span>
+      {{ ingredient_quantity.measure|format_measure }}
+      {{ ingredient_quantity.unit.long_name }}
+      {{ ingredient_quantity.ingredient }}
+    </span>
+  </label>
+</div>
