@@ -1,28 +1,47 @@
 <style>
-  ol {
-    /* TODO: remove this; figure out how to set div indentation recursively */
-    padding-left: 20px;
-  }​
+  .recipe_container {
+    font: 14px "Helvetica Neue",Helvetica,Arial,sans-serif;
+    padding: 10px;
+  }
+
+  .recipe_header {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
+
+  .recipe_section_header {
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 3px;
+  }
+
+  .recipe_step {
+    margin-left: -10px;
+  }
+
 </style>
 
-{% if recipe.parent_recipe == None %}
-  <h1>{{ recipe.title }}</h1>
-{% else %}
-  <h2>{{ recipe.title }}</h2>
-{% endif %}
+<div class= {% if recipe.parent_recipe == None %}"recipe_container"{% endif %}>
+  {% if recipe.parent_recipe == None %}
+    <div class="recipe_header">{{ recipe.title }}</div>
+  {% else %}
+    <div class="recipe_section_header">{{ recipe.title }}</div>
+  {% endif %}
 
-{% for obj in recipe.recipe_set.all %}
-  {% include "recipe_template.html" with recipe=obj %}
-{% endfor %}
-
-<ul>
-  {% for obj in recipe.ingredient_quantity_set.all %}
-    <li>{% include "ingredient_quantity_template.html" with ingredient_quantity=obj %}</li>
+  {% for obj in recipe.recipe_set.all %}
+    {% include "recipe_template.html" with recipe=obj %}
   {% endfor %}
-</ul>
 
-<ol>
-  {% for obj in recipe.recipe_step_set.all %}
-    <li>{% include "recipe_step_template.html" with recipe_step=obj %}</li>
-  {% endfor %}
-</ol>
+  <ul class="recipe_ingredient">
+    {% for obj in recipe.ingredient_quantity_set.all %}
+      <li>{% include "ingredient_quantity_template.html" with ingredient_quantity=obj %}</li>
+    {% endfor %}
+  </ul>
+
+  <ol class="recipe_step">
+    {% for obj in recipe.recipe_step_set.all %}
+      <li>{% include "recipe_step_template.html" with recipe_step=obj %}</li>
+    {% endfor %}
+  </ol>
+</div>

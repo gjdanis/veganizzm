@@ -1,7 +1,7 @@
-from django.db                import models
+from django.db import models
 from django.core.urlresolvers import reverse
-from veganizzm.utilities      import generate_slug
-from taggit.managers          import TaggableManager
+from veganizzm.utilities import generate_slug
+from taggit.managers import TaggableManager
 
 # == `Recipe` ==
 class Recipe(models.Model):
@@ -12,12 +12,12 @@ class Recipe(models.Model):
     class Meta:
         default_related_name = 'recipe_set'
 
-    title = models.CharField(max_length=255)
+    title = models.CharField(max_length=100)
     slug  = models.SlugField(max_length=100, unique=True, editable=False)
     makes = models.PositiveSmallIntegerField(null=True, blank=True)
 
     # Optional preceding text for a `Recipe`.
-    blurb = models.CharField(max_length=500, null=True, blank=True)
+    blurb = models.CharField(max_length=200, null=True, blank=True)
 
     # How long it takes to make this `Recipe`.
     prep_time    = models.DurationField(null=True, blank=True, help_text="An hh:mm:ss duration.")
@@ -27,7 +27,11 @@ class Recipe(models.Model):
     recipe_equipment = models.ManyToManyField('RecipeEquipment')
 
     # Link to source of the recipe, if applicable.
-    web_reference = models.URLField(null=True, blank=True, help_text="Web URL for citation purposes.")
+    web_reference = models.URLField(
+        null=True,
+        blank=True,
+        help_text="Web URL for citation purposes."
+    )
 
     # Indexable tags.
     tags = TaggableManager(blank=True)
@@ -38,8 +42,8 @@ class Recipe(models.Model):
         'self',
         on_delete=models.SET_NULL,
         help_text="Use if this recipe has multiple sub-recipes.",
-        blank=True,
         null=True,
+        blank=True
     )
 
     # Override the `save` function to auto generate the `slug` field.
@@ -73,8 +77,8 @@ class Unit(models.Model):
 
     # Name of the unit and short name of the unit (e.g. cups/c).
     # TODO: do we need a field for plurals?
-    long_name  = models.CharField(max_length=60, unique=True)
-    short_name = models.CharField(max_length=60, unique=True)
+    long_name   = models.CharField(max_length=20, unique=True)
+    short_name  = models.CharField(max_length=20, unique=True)
     
     # For conversion purposes. 
     physical_unit = models.IntegerField(choices=PhysicalUnits)
@@ -90,7 +94,7 @@ class Ingredient(models.Model):
     class Meta:
         ordering = ['name']
     
-    name = models.CharField(max_length=255, unique=True)
+    name = models.CharField(max_length=50, unique=True)
 
     # External link to an example.
     web_reference = models.URLField(null=True, blank=True)
@@ -122,12 +126,17 @@ class RecipeEquipment(models.Model):
 
     class Meta:
         ordering = ['name']
-        verbose_name_plural = 'recipe equipment'
+        default_related_name = 'recipe_equipment_set'
+        verbose_name_plural  = 'recipe equipment item'
 
-    name = models.CharField(max_length=255, unique=True)
+    name = models.CharField(max_length=50, unique=True)
    
     # External link to an example.
-    web_reference = models.URLField(null=True, blank=True, help_text="Web URL for citation purposes.")
+    web_reference = models.URLField(
+        null=True,
+        blank=True,
+        help_text="Web URL for citation purposes."
+    )
 
     def save(self):
         self.name = self.name.lower()
@@ -154,7 +163,7 @@ class IngredientQuantity(models.Model):
     # `ingredient` is the `Ingredient` measured; `preparation`
     # should indicate how it's prepared (e.g. chopped).
     ingredient  = models.ForeignKey(Ingredient, on_delete=models.PROTECT)
-    preparation = models.CharField(null=True, blank=True, max_length=100)
+    preparation = models.CharField(null=True, blank=True, max_length=50)
 
     # `recipe` is the `Recipe` to which this `IngredientQuantity` belongs.
     # Expect deleting a `Recipe` to delete all associated `IngredientQuantity`

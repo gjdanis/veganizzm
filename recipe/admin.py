@@ -1,9 +1,9 @@
-from django.contrib        import admin
-from django.conf           import settings
-from django.forms          import TextInput
-from django                import forms
-from recipe.models         import *
-from redactor.widgets      import RedactorEditor
+from django.contrib import admin
+from django.conf import settings
+from django.forms import TextInput
+from django import forms
+from recipe.models import *
+from redactor.widgets import RedactorEditor
 from taggit_labels.widgets import LabelWidget
 
 # Admin configuration for the `recipe` application. 
@@ -18,7 +18,6 @@ class AdminInlineIngredientQuantityForm(forms.ModelForm):
         widgets = {
             'measure': TextInput(attrs={'size': '5'}),
         }
-    pass
 
 class AdminInlineRecipeStepForm(forms.ModelForm):
     # Use `SummernoteWidget` for rich text editing.
@@ -28,7 +27,6 @@ class AdminInlineRecipeStepForm(forms.ModelForm):
         widgets = {
             'content': RedactorEditor(),
         }
-    pass
 
 class AdminRecipeForm(forms.ModelForm):
     # Use `SummernoteWidget` for rich text editing.
@@ -38,7 +36,6 @@ class AdminRecipeForm(forms.ModelForm):
         widgets = {
             'tags': LabelWidget()
         }
-    pass
 
 class AdminInlineRecipeEquipment(admin.TabularInline):
     extra = 0

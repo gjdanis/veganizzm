@@ -1,8 +1,8 @@
-from django.contrib        import admin
-from django                import forms
-from blog.models           import Post
-from django.forms          import TextInput
-from redactor.widgets      import RedactorEditor
+from django.contrib import admin
+from django import forms
+from blog.models import Post
+from django.forms import TextInput
+from redactor.widgets import RedactorEditor
 from taggit_labels.widgets import LabelWidget
 
 # Admin configuration for the `blog` application. 
@@ -18,7 +18,6 @@ class AdminPostForm(forms.ModelForm):
             'content': RedactorEditor(),
             'tags': LabelWidget()
         }
-    pass
 
 @admin.register(Post)
 class AdminPost(admin.ModelAdmin):

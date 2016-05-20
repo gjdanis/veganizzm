@@ -23,19 +23,20 @@ Including another URL conf
 """
 
 from django.conf.urls import url, include
-from django.contrib   import admin
-from django.conf      import settings
+from django.contrib import admin
+from django.conf import settings
 from django.conf.urls.static import static
+from django.views.generic import TemplateView
 
-import blog.views
-import recipe.views
+from recipe.views import RecipeView
+from blog.views   import PostView
 
 urlpatterns = [
     url(r'^redactor/', include('redactor.urls')),
-    url(r'^$', blog.views.home_view),
+    url(r'^$', TemplateView.as_view(template_name='index.html')),
     url(r'^admin/', admin.site.urls),
-    url(r'^posts/(?P<slug>[-\w\d\_]+)/$', blog.views.post_view, name='post_view'),
-    url(r'^recipes/(?P<slug>[-\w\d\_]+)/$', recipe.views.recipe_view, name='recipe_view'),
+    url(r'^posts/(?P<slug>[-\w\d\_]+)/$', PostView.as_view(), name='post_view'),
+    url(r'^recipes/(?P<slug>[-\w\d\_]+)/$', RecipeView.as_view(), name='recipe_view'),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

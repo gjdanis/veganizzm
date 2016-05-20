@@ -216,7 +216,7 @@
   "pk": 20,
   "fields": {
     "title": "Indian-Spiced Sweet Potato Mash",
-    "slug": "indian-spiced-sweet-potato-mash",
+    "slug": "indian-spiced-sweet-potato-mash-1",
     "makes": null,
     "blurb": "",
     "prep_time": null,
@@ -516,7 +516,7 @@
   "pk": 1,
   "fields": {
     "long_name": "cup",
-    "short_name": "C",
+    "short_name": "c",
     "physical_unit": 2,
     "system": 2
   }
@@ -637,16 +637,6 @@
   "fields": {
     "long_name": "large",
     "short_name": "large",
-    "physical_unit": 0,
-    "system": 0
-  }
-},
-{
-  "model": "recipe.unit",
-  "pk": 14,
-  "fields": {
-    "long_name": "small",
-    "short_name": "small",
     "physical_unit": 0,
     "system": 0
   }
@@ -3589,7 +3579,7 @@
   "pk": 153,
   "fields": {
     "measure": "1",
-    "unit": 14,
+    "unit": null,
     "ingredient": 68,
     "preparation": "diced (optional)",
     "recipe": 20
@@ -3743,7 +3733,7 @@
   "pk": 167,
   "fields": {
     "measure": "1",
-    "unit": 14,
+    "unit": null,
     "ingredient": 79,
     "preparation": "",
     "recipe": 24
@@ -4381,7 +4371,7 @@
   "pk": 225,
   "fields": {
     "measure": "3-4",
-    "unit": 14,
+    "unit": null,
     "ingredient": 47,
     "preparation": "chopped",
     "recipe": 34
@@ -4920,7 +4910,7 @@
   "pk": 274,
   "fields": {
     "measure": "1",
-    "unit": 14,
+    "unit": null,
     "ingredient": 46,
     "preparation": "chopped",
     "recipe": 39

@@ -1,9 +1,9 @@
 from django.contrib.auth.models import User
-from django.db                  import models
-from django.core.urlresolvers   import reverse
-from veganizzm.utilities        import generate_slug
-from recipe.models              import Recipe
-from taggit.managers            import TaggableManager
+from django.db import models
+from django.core.urlresolvers import reverse
+from veganizzm.utilities import generate_slug
+from recipe.models import Recipe
+from taggit.managers import TaggableManager
 
 # == `Post` ==
 class Post(models.Model):
